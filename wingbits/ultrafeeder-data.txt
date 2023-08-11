@@ -1,0 +1,110 @@
+#Doc
+#https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder
+
+# --------------------------------------------------
+# REQUIRED
+# replace with your own values
+# --------------------------------------------------
+FEEDER_ALT_M=310
+FEEDER_ALT_FT=1019
+FEEDER_LAT=38.2347639
+FEEDER_LONG=6.969894
+FEEDER_TZ=Europe/Paris
+FEEDER_NAME=GiveANameToYourPlace
+
+#SDR usb device. use "lsusb" to get.
+ADSB_SDR_SERIAL=/dev/bus/usb/001/006
+
+ULTRAFEEDER_UUID=b0254c88-1111-2222-3333-4444444ccccc
+
+
+#The TAR1090 app does not support double replacement of variables.
+#So you have to put those one again here
+TAR1090_DEFAULTCENTERLAT=38.2347639
+TAR1090_DEFAULTCENTERLON=6.969894
+TAR1090_PAGETITLE=GiveANameToYourPlace
+
+
+# --------------------------------------------------
+# Data is sent to those services.
+# Add the ones you want to feed.
+#
+# Each line must end with a semicolon ";"
+# The last line must NOT end with a semicolon ";"
+
+#ULTRAFEEDER_CONFIG=
+#    adsb,feed.adsb.fi,30004,beast_reduce_plus_out;
+#    adsb,in.adsb.lol,30004,beast_reduce_plus_out;
+#    adsb,feed.adsb.one,64004,beast_reduce_plus_out;
+#    adsb,feed.planespotters.net,30004,beast_reduce_plus_out;
+#    adsb,feed.theairtraffic.com,30004,beast_reduce_plus_out;
+#    adsb,data.avdelphi.com,24999,beast_reduce_plus_out;
+#    mlat,feed.adsb.fi,31090,39000;
+#    mlat,in.adsb.lol,31090,39001;
+#    mlat,feed.adsb.one,64006,39002;
+#    mlat,mlat.planespotters.net,31090,39003;
+#    mlat,feed.theairtraffic.com,31090,39004
+
+#Wingbits
+READSB_EXTRA_ARGS='--net-connector vector,30099,json_out'
+
+
+# --------------------------------------------------
+# Do not change anything below
+# --------------------------------------------------
+#In db, or autogain. Note: autogain does not work nor setting a value, it is always set to 0dB when specified, which kills all aircrafts.
+#ADSB_SDR_GAIN=5
+
+#Optional
+#FEEDER_HEYWHATSTHAT_ID=
+#FEEDER_HEYWHATSTHAT_ALTS=
+#ADSB_SDR_PPM=
+
+
+# --------------------------------------------------
+# general parameters:
+LOGLEVEL=error
+TZ=${FEEDER_TZ}
+# --------------------------------------------------
+# SDR related parameters:
+READSB_DEVICE_TYPE=rtlsdr
+#READSB_RTLSDR_DEVICE=${ADSB_SDR_SERIAL}
+#READSB_RTLSDR_PPM=${ADSB_SDR_PPM}
+#
+# --------------------------------------------------
+# readsb/decoder parameters:
+READSB_LAT=${FEEDER_LAT}
+READSB_LON=${FEEDER_LONG}
+READSB_ALT=${FEEDER_ALT_M}m
+#READSB_GAIN=${ADSB_SDR_GAIN}
+READSB_MODEAC=true
+READSB_RX_LOCATION_ACCURACY=2
+READSB_STATS_RANGE=true
+#
+
+
+# --------------------------------------------------
+UUID=${ULTRAFEEDER_UUID}
+READSB_FORWARD_MLAT_SBS=true
+#
+# --------------------------------------------------
+# TAR1090 (Map Web Page) parameters:
+UPDATE_TAR1090=true
+TAR1090_MESSAGERATEINTITLE=true
+TAR1090_PLANECOUNTINTITLE=true
+TAR1090_ENABLE_AC_DB=true
+TAR1090_FLIGHTAWARELINKS=true
+#HEYWHATSTHAT_PANORAMA_ID=${FEEDER_HEYWHATSTHAT_ID}
+#HEYWHATSTHAT_ALTS=${FEEDER_HEYWHATSTHAT_ALTS}
+TAR1090_SITESHOW=true
+TAR1090_RANGE_OUTLINE_COLORED_BY_ALTITUDE=true
+TAR1090_RANGE_OUTLINE_WIDTH=2.0
+TAR1090_RANGERINGSDISTANCES=50,100,150,200
+TAR1090_RANGERINGSCOLORS='#1A237E','#0D47A1','#42A5F5','#64B5F6'
+TAR1090_USEROUTEAPI=true
+#
+# --------------------------------------------------
+# GRAPHS1090 (Decoder and System Status Web Page) parameters:
+GRAPHS1090_DARKMODE=true
+#
+# --------------------------------------------------
