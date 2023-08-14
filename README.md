@@ -35,6 +35,11 @@ pwsh -ExecutionPolicy Bypass -Command "iwr 'https://raw.githubusercontent.com/so
 
 Replace `zzzzzzzzzz` by one of the existing file name.
 
+Ex:
+```
+pwsh -ExecutionPolicy Bypass -Command "iwr 'https://raw.githubusercontent.com/softlion/defli/main/wingbits/wingbits.ps1' | iex"
+```
+
 ## Directly from within the device
 - ssh into your device and run:
 ```shell
@@ -42,6 +47,11 @@ curl https://raw.githubusercontent.com/softlion/defli/main/zzzzzzzzzz.sh | sudo 
 ```
 
 Replace `zzzzzzzzzz` by one of the existing file name.
+
+Ex:
+```
+curl https://raw.githubusercontent.com/softlion/defli/main/wingbits/wingbits.sh | sudo bash
+```
 
 # Tip
 
