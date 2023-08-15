@@ -31,27 +31,27 @@ The scripts will ask you all required info for onboarding. You can run the scrip
 - Install the latest version of [microsoft powershell](https://www.microsoft.com/store/productId/9MZ1SNWT0N5D) from the windows store.
 - open powershell (enter `pwsh` in the search box of the window's taskbar)
 ```powershell
-pwsh -ExecutionPolicy Bypass -Command "iwr 'https://raw.githubusercontent.com/softlion/defli/main/zzzzzzzzzz.ps1' | iex"
+pwsh -ExecutionPolicy Bypass -Command "iwr 'https://raw.githubusercontent.com/softlion/depin/main/zzzzzzzzzz.ps1' | iex"
 ```
 
 Replace `zzzzzzzzzz` by one of the existing file name.
 
 Ex:
 ```
-pwsh -ExecutionPolicy Bypass -Command "iwr 'https://raw.githubusercontent.com/softlion/defli/main/wingbits/wingbits.ps1' | iex"
+pwsh -ExecutionPolicy Bypass -Command "iwr 'https://raw.githubusercontent.com/softlion/depin/main/wingbits/wingbits.ps1' | iex"
 ```
 
 ## Directly from within the device
 - ssh into your device and run:
 ```shell
-curl https://raw.githubusercontent.com/softlion/defli/main/zzzzzzzzzz.sh | sudo bash
+curl https://raw.githubusercontent.com/softlion/depin/main/zzzzzzzzzz.sh | sudo bash
 ```
 
 Replace `zzzzzzzzzz` by one of the existing file name.
 
 Ex:
 ```
-curl https://raw.githubusercontent.com/softlion/defli/main/wingbits/wingbits.sh | sudo bash
+curl https://raw.githubusercontent.com/softlion/depin/main/wingbits/wingbits.sh | sudo bash
 ```
 
 # Tip
