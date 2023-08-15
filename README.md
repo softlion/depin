@@ -44,14 +44,14 @@ pwsh -ExecutionPolicy Bypass -Command "iwr 'https://raw.githubusercontent.com/so
 ## Directly from within the device
 - ssh into your device and run:
 ```shell
-curl https://raw.githubusercontent.com/softlion/depin/main/zzzzzzzzzz.sh | bash
+bash -c $(curl 'https://raw.githubusercontent.com/softlion/depin/main/zzzzzzzzzz.sh')
 ```
 
 Replace `zzzzzzzzzz` by one of the existing file name.
 
 Ex:
 ```
-curl https://raw.githubusercontent.com/softlion/depin/main/wingbits/wingbits.sh | bash
+bash -c $(curl 'https://raw.githubusercontent.com/softlion/depin/main/wingbits/wingbits.sh')
 ```
 
 # Tip
