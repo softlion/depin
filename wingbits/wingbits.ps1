@@ -15,6 +15,7 @@ function Main() {
   Write-Host "--------------------------------------"
   Write-Host "Wingbits install"
   Write-Host "For any firmware with Docker (Pisces) or Balena (Sencap, Nebra)"
+  Write-Host "https://github.com/softlion/depin"
   Write-Host "--------------------------------------"
   if ([string]::IsNullOrEmpty($IP)) {
     $IP = Read-Host "ssh IP of target device (ex: 192.168.10.22):"
