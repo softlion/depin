@@ -5,17 +5,17 @@
 # REQUIRED
 # replace with your own values
 # --------------------------------------------------
-FEEDER_ALT_M=310
-FEEDER_ALT_FT=1019
-FEEDER_LAT=38.2347639
-FEEDER_LONG=6.969894
-FEEDER_TZ=Europe/Paris
-FEEDER_NAME=GiveANameToYourPlace
+FEEDER_ALT_M=
+FEEDER_ALT_FT=
+FEEDER_LAT=
+FEEDER_LONG=
+FEEDER_TZ=
+FEEDER_NAME=
 
 #SDR usb device. use "lsusb" to get.
 ADSB_SDR_SERIAL=/dev/bus/usb/001/006
 
-ULTRAFEEDER_UUID=b0254c88-1111-2222-3333-4444444ccccc
+ULTRAFEEDER_UUID=
 
 
 #The TAR1090 app does not support double replacement of variables.
@@ -46,7 +46,7 @@ TAR1090_PAGETITLE=GiveANameToYourPlace
 #    mlat,feed.theairtraffic.com,31090,39004
 
 #Wingbits
-READSB_EXTRA_ARGS='--net-connector vector,30099,json_out'
+READSB_EXTRA_ARGS=--net-connector vector,30099,json_out
 
 
 # --------------------------------------------------
