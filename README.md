@@ -9,8 +9,9 @@ It is built on my spare time.
 # Projects
 
 🚨  
-🚨 Any project can be a SCAM. Do you own research.  
+🚨 Any project can be a SCAM or a PONZI. Do you own research.  
 🚨 Start by reading [how to detect a SCAM](https://www.investopedia.com/articles/forex/042315/beware-these-five-bitcoin-scams.asp)  
+🚨 In a PONZI, newcomers "pay" for the ones who area already there.
 🚨  
 
 [Wingbits Website](https://wingbits.com/)  
