@@ -114,6 +114,9 @@ function askUltrafeederStationData() {
         longitude=$(get_value "FEEDER_LONG")
         altitudeMeters=$(get_value "FEEDER_ALT_M")
         timezone=$(get_value "FEEDER_TZ")
+
+        #overwrite the file with a new version if one exists
+        response=$(curl -o "$ultrafeederDataFile" --write-out "%{http_code}" 'https://raw.githubusercontent.com/softlion/depin/main/wingbits/ultrafeeder-data.txt')
     fi
 
     zonefile="$ultrafeederFolder/zone1970.tab"
