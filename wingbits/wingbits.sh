@@ -134,7 +134,7 @@ function askUltrafeederStationData() {
     stationName=$(prompt_with_default "Station Name" "$stationName")
 
 
-    if [ -z "$stationUuid" ]; then
+    if [ -z "$stationUuid" ] || ! is_valid_guid "$stationUuid"; then
         stationUuid=$(uuidgen)
     fi
     while true; do
