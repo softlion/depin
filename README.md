@@ -17,6 +17,10 @@ It is built on my spare time.
 [Wingbits Website](https://wingbits.com/)  
 [Wingbits Discord](https://discord.com/invite/ZmpRW73qRH)  
 
+[Mysterium Website](https://mystnodes.com/)  
+[Mysterium Discord](https://discord.com/invite/n3vtSwc)  
+
+
 [List of other DePIN projects](https://wholovesburrito.com/project-list/)
 
 # Scripts
