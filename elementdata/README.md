@@ -1,5 +1,7 @@
 Follow the [instructions](https://elementdata.xyz/configuration)
 
+You will need an `Await Element` device for this project.
+
 # Additional FAQ
 
 ## How to get the awair ID when you have multiple sensors in your cloud account
