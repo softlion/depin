@@ -21,6 +21,9 @@ It is built on my spare time.
 [Mysterium Website](https://mystnodes.com/)  
 [Mysterium Discord](https://discord.com/invite/n3vtSwc)  
 
+[ElementData Website](https://elementdata.xyz/)  
+[ElementData Discord](https://discord.gg/ReZxN5W9Jw)  
+
 
 [List of other DePIN projects](https://wholovesburrito.com/project-list/)
 
