@@ -33,7 +33,13 @@ function installGrass(){
     $hypervisor run -d --name $container_name \
         -v $grassFolder/grass.sh:/run.sh \
         --label=com.centurylinklabs.watchtower.enable=true \
-        node sh -c "sh /run.sh"
+        node:18-buster bash -c "bash /run.sh"
+
+    echo "to display statup logs:"
+    echo "$hypervisor logs -f $container_name"
+
+    echo "to display grass logs (wait for statup to finish):"
+    echo "$hypervisor exec -it grass pm2 monit"
 }
 
 function createGrassScript() {
@@ -53,16 +59,17 @@ trap cleanup SIGTERM
 
 run() {
     echo "starting grass"
-    user_ids_var='"$userIds"'
+    user_ids_var='\""$userIds"\"'
+
+    apt update -y
+    apt install -y cron
 
     #get source
-    mkdir /usr/src/
     cd /usr/src/
     git clone https://github.com/Wynd-Network/grass-vps.git
     cd grass-vps
 
     #install
-    apt install -y cron
     #chmod +x ./scripts/start.sh
     #echo "$user_ids_var" | ./scripts/start.sh
  
