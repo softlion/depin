@@ -21,6 +21,9 @@ It is built on my spare time.
 [Mysterium Website](https://mystnodes.com/)  
 [Mysterium Discord](https://discord.com/invite/n3vtSwc)  
 
+[ElementData Website](https://elementdata.xyz/)  
+[ElementData Discord](https://discord.gg/ReZxN5W9Jw)  
+
 
 [List of other DePIN projects](https://wholovesburrito.com/project-list/)
 
@@ -61,7 +64,9 @@ bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/wingbits/
 
 # Tip
 
-Donate for a coffee if that script helped you !  
+* Star the project (tap on the start on top right)
+
+* Donate for a coffee if that script helped you !  
 I'd love to visit new countries in the world.
 
 Multi chain Metamask account (BSC, Etherum, Arbitrum, Doge, Polygon, Avalanche, ...):
