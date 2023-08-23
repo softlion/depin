@@ -2,7 +2,7 @@
 #starts this container: grass (node)
 
 function createFolders(){
-    #create folders
+    echo "Creating folders"
     depinFolder=$([ "$hypervisor" == "balena" ] && echo "/mnt/data/depin" || echo "/usr/src/depin")
 
     folder=$depinFolder
@@ -37,12 +37,13 @@ function installGrass(){
 }
 
 function createGrassScript() {
-    if [ -z "$userIds" ]; then    
-        echo "Enter the user ids to associate with the IPs"
-        userIds=$(prompt_with_default "Grass userIds" "")
-    fi
 
-    installScript='
+  if [ -z "$userIds" ]; then
+    echo "Enter the user ids to associate with the IPs"
+    userIds=$(prompt_with_default "Grass userIds" "")
+  fi
+
+  installScript='
 function cleanup() {
     echo "Grass stopped"
     exit 0
@@ -52,8 +53,8 @@ trap cleanup SIGTERM
 
 run() {
     echo "starting grass"
-'+" user_ids_var="$userIds"
-"+'
+    user_ids_var='"$userIds"'
+
     #get source
     mkdir /usr/src/
     cd /usr/src/
