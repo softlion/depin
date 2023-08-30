@@ -76,7 +76,7 @@ function installWingbits() {
 function askUltrafeederStationData() {
 
     #Get USB bus and device numbers of the RTL stick
-    deviceNameQuery='RTL2838|ADSB_1090'
+    deviceNameQuery='RTL2838|ADSB_1090|0bda:2838'
     line=$(lsusb | grep -E $deviceNameQuery)
     
     if [ -z "$line" ]; then
