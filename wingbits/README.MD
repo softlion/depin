@@ -24,3 +24,10 @@ Other devices
 sudo mkdir /mnt/data
 sudo bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/wingbits/wingbits.sh')"
 ```
+
+## Information
+
+While installing, you will be asked to:
+- get your location using [Google Earth](https://earth.google.com/web/)'s url
+- get your time zone, from [wikipedia](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+
