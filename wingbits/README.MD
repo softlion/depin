@@ -28,6 +28,6 @@ sudo bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/wing
 ## Information
 
 While installing, you will be asked to:
+- generate any [random UUID](https://www.uuidgenerator.net/)
 - get your location using [Google Earth](https://earth.google.com/web/)'s url
 - get your time zone, from [wikipedia](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
-
