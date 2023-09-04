@@ -9,22 +9,18 @@ Then get your [node registration code](https://nodes.presearch.com/dashboard)
 Run this script to install the docker container, auto updated by watchtower.
 
 Windows:
-```
+```shell
 pwsh -ExecutionPolicy Bypass -Command "iwr 'https://raw.githubusercontent.com/softlion/depin/main/presearch/presearch.ps1' | iex"
 ```
 
 Or ssh into your device and run:
-```
+```shell
 bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/presearch/presearch.sh')"
-```
-
-Or follow the instructions on the home of this github:
-```
 ```
 
 ## Validation
 
-```
+```shell
 #Pisces, docker:
 sudo docker logs -f presearch
 
