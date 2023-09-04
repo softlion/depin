@@ -33,12 +33,12 @@ function installPresearch(){
     container_name="presearch"
     if $hypervisor container inspect "$container_name" >/dev/null 2>&1; then $hypervisor rm -f "$container_name"; fi;
 
-    docker run -dt --name "$container_name" \
-    --restart=unless-stopped \
-    -v "$presearchFolder":/app/node \
-    --label=com.centurylinklabs.watchtower.enable=true \
-    -e REGISTRATION_CODE="$REGISTRATION_CODE" \
-    presearch/node; 
+    $hypervisor run -dt --name "$container_name" \
+      --restart=unless-stopped \
+      -v "$presearchFolder":/app/node \
+      --label=com.centurylinklabs.watchtower.enable=true \
+      -e REGISTRATION_CODE="$REGISTRATION_CODE" \
+      presearch/node; 
 }
 
 function prompt_with_default() {
