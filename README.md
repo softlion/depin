@@ -65,10 +65,11 @@ sudo bash ...
 # Updates
 
 To get updates of the containers automatically, install the watchtower container.  
-In the script below, remove the `#` on either the 1st or 2nd line, depending which one is working on your device.
+In the script below, remove the `#` on either the 1st or 2nd line, depending which one is working on your device.  
+You may also need "sudo $hypervisor" instead of $hypervisor on the 3rd line.
 ```
 #hypervisor="balena"
-#hypervisor="sudo docker"
+#hypervisor="docker"
 $hypervisor run -d \
       --name watchtower \
       --volume "/var/run/$hypervisor.sock":/var/run/docker.sock \
