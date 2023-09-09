@@ -74,7 +74,7 @@ balena run -d \
       containrrr/watchtower \
       --label-enable
 
-balena run --name watchtower0 --volume "/var/run/$hypervisor.sock":/var/run/docker.sock  --label=com.centurylinklabs.watchtower.enable=true  containrrr/watchtower --label-enable --run-once
+balena run --name watchtower0 --volume "/var/run/balena.sock":/var/run/docker.sock  --label=com.centurylinklabs.watchtower.enable=true  containrrr/watchtower --label-enable --run-once
 balena rm watchtower0
 ```
 
@@ -87,7 +87,7 @@ sudo docker run -d \
       containrrr/watchtower \
       --label-enable
 
-balena run --name watchtower0 --volume "/var/run/$hypervisor.sock":/var/run/docker.sock  --label=com.centurylinklabs.watchtower.enable=true  containrrr/watchtower --label-enable --run-once
+balena run --name watchtower0 --volume "/var/run/docker.sock":/var/run/docker.sock  --label=com.centurylinklabs.watchtower.enable=true  containrrr/watchtower --label-enable --run-once
 balena rm watchtower0
 ```
 
