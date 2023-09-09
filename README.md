@@ -12,8 +12,7 @@ It is built on my spare time.
 🚨 Any project can be a SCAM or a PONZI. Do your own research.  
 🚨 Start by reading [how to detect a SCAM](https://www.investopedia.com/articles/forex/042315/beware-these-five-bitcoin-scams.asp)  
 🚨 In a PONZI, newcomers "pay" for the ones who are already in the project.  
-🚨 Beware that socat and netcat won't display any error, even when the destination does not exist.  
-🚨 And when the destination does not exist, you can suppose it's a ponzi.  
+🚨 Beware that `socat` and `netcat` won't display any error when the destination IP:Port does not exist. And if it does not exist, then you know it's a ponzi.  
 🚨  
 
 [List of DePIN projects, with study of their profitability](https://wholovesburrito.com/project-list/)
@@ -62,20 +61,34 @@ bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/wingbits/
 sudo bash ...
 ```
 
-# Updates
+# Automatic Updates
 
-To get updates of the containers automatically, install the watchtower container.  
-In the script below, remove the `#` on either the 1st or 2nd line, depending which one is working on your device.  
-You may also need "sudo $hypervisor" instead of $hypervisor on the 3rd line.
+To update the containers automatically, use watchtower.
+
+All nebra firmwares, Sensecap:
 ```
-#hypervisor="balena"
-#hypervisor="docker"
-$hypervisor run -d \
+balena run -d \
       --name watchtower \
-      --volume "/var/run/$hypervisor.sock":/var/run/docker.sock \
+      --volume "/var/run/balena.sock":/var/run/docker.sock \
       --label=com.centurylinklabs.watchtower.enable=true \
       containrrr/watchtower \
       --label-enable
+
+balena run --name watchtower0 --volume "/var/run/$hypervisor.sock":/var/run/docker.sock  --label=com.centurylinklabs.watchtower.enable=true  containrrr/watchtower --label-enable --run-once
+balena rm watchtower0
+```
+
+Pisces P100, other devices:
+```
+sudo docker run -d \
+      --name watchtower \
+      --volume "/var/run/docker.sock":/var/run/docker.sock \
+      --label=com.centurylinklabs.watchtower.enable=true \
+      containrrr/watchtower \
+      --label-enable
+
+balena run --name watchtower0 --volume "/var/run/$hypervisor.sock":/var/run/docker.sock  --label=com.centurylinklabs.watchtower.enable=true  containrrr/watchtower --label-enable --run-once
+balena rm watchtower0
 ```
 
 
@@ -83,8 +96,7 @@ $hypervisor run -d \
 
 * Star the project (tap on the start on top right)
 
-* Donate for a coffee if that script helped you !  
-I'd love to visit new countries in the world.
+* Donate if those scripts helped you !  
 
 Multi chain Metamask account (BSC, Etherum, Arbitrum, Doge, Polygon, Avalanche, ...):
 
