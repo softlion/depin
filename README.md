@@ -71,7 +71,7 @@ In the script below, remove the `#` on either the 1st or 2nd line, depending whi
 #hypervisor="sudo docker"
 $hypervisor run -d \
       --name watchtower \
-      --volume /var/run/$hypervisor.sock:/var/run/docker.sock \
+      --volume "/var/run/$hypervisor.sock":/var/run/docker.sock \
       --label=com.centurylinklabs.watchtower.enable=true \
       containrrr/watchtower \
       --label-enable
