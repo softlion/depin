@@ -1,10 +1,11 @@
 # Presearch
 
+[Website](https://presearch.com/signup?rid=4757851)
 [Community on Telegram](https://t.me/PresearchNodes)  
 [Discord](https://discord.com/invite/KUpshRZz2n) (less active than telegram)
 
 You must stake 1000 pre to get the rewards. [See doc](https://account.presearch.com/tokens/usage-rewards).  
-Buy pre: [site 1](https://presearch.io/exchanges) [site 2](https://www.kucoin.com/trade/PRE-USDT)
+Buy pre: [uniswap.org](uniswap.org) [Tous les sites](https://presearch.io/exchanges)
 
 ## Getting Started
 
