@@ -20,3 +20,19 @@ Streamr will ask you a few questions, the answers are on the [streamr website](h
 Then it will start the node container with this config file.
 
 You can run it multiple times.
+
+## Installation
+
+On nebra and sensecap:
+
+```shell
+bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/mysterium/mysterium.sh')"
+```
+
+Other raspberry pi devices with docker installed:
+```shell
+sudo bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/mysterium/mysterium.sh')"
+```
+
+## Information
+
