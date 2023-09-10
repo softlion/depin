@@ -34,6 +34,11 @@ Other raspberry pi devices with docker installed:
 sudo bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/streamr/streamr.sh')"
 ```
 
+From Windows:
+```powershell
+pwsh -ExecutionPolicy Bypass -Command "iwr 'https://raw.githubusercontent.com/softlion/depin/main/streamr/streamr.ps1' | iex"
+```
+
 # Tip
 
 * Star the project (tap on the start on top right)
