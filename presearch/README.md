@@ -5,7 +5,7 @@
 [Discord](https://discord.com/invite/KUpshRZz2n) (less active than telegram)
 
 You must stake 4000 PRE (100$) per node to get the rewards. [See doc](https://account.presearch.com/tokens/usage-rewards).  
-Buy PRE on Etherum: [uniswap.org](https://uniswap.org) or [uniswap.org](https://quickswap.org) Requires 20 block confirmation. Then stake them on one node on the [dashboard](https://nodes.presearch.com/dashboard).  
+Buy PRE on Etherum: [uniswap.org](https://uniswap.org). Requires 20 block confirmation. Then stake them on one node on the [dashboard](https://nodes.presearch.com/dashboard).  
 [All exchanges](https://presearch.io/exchanges)
 
 ## Getting Started
