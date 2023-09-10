@@ -1,5 +1,8 @@
 # Wingbits
 
+[Wingbits Website](https://wingbits.com/)  
+[Wingbits Discord](https://discord.com/invite/ZmpRW73qRH)  
+
 ## Prerequisites
 
 ### On nebra and sensecap

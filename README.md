@@ -9,31 +9,26 @@ It is built on my spare time.
 # Projects
 
 🚨  
-🚨 Any project can be a SCAM or a PONZI. Do you own research.  
+🚨 Any project can be a SCAM or a PONZI. Do your own research.  
 🚨 Start by reading [how to detect a SCAM](https://www.investopedia.com/articles/forex/042315/beware-these-five-bitcoin-scams.asp)  
 🚨 In a PONZI, newcomers "pay" for the ones who are already in the project.  
-🚨 Beware that socat and netcat won't display any error, even when the destination does not exist.  
+🚨 Beware that `socat` and `netcat` won't display any error when the destination IP:Port does not exist. And if it does not exist, then you know it's a ponzi.  
 🚨  
 
-[Wingbits Website](https://wingbits.com/)  
-[Wingbits Discord](https://discord.com/invite/ZmpRW73qRH)  
-
-[Mysterium Website](https://mystnodes.com/)  
-[Mysterium Discord](https://discord.com/invite/n3vtSwc)  
-
-[ElementData Website](https://elementdata.xyz/)  
-[ElementData Discord](https://discord.gg/ReZxN5W9Jw)  
-
-
-[List of other DePIN projects](https://wholovesburrito.com/project-list/)
+[List of DePIN projects, with study of their profitability](https://wholovesburrito.com/project-list/)
 
 # Scripts
 
-The `.ps1` scripts for windows machines will ssh to the given IP and executes the `.sh` script on it.  Instead you can run the ".sh" script directly from a ssh session on the target device.
+Open the folder you are interested in, and follow the instructions there.
 
-It supports both balena and docker, so it can run on Pisces, Sensecap, Nebra, and other Raspberry PI devices having docker or balena installed. It will create configuration folders in /mnt/data/ though.
+#  Details Common to all Scripts
 
-The scripts will ask you all required info for onboarding. You can run the script multiple times, for example to change the location of elevation.
+The `.ps1` scripts are for Windows machines. They will connect using ssh to the given device IP, and executes the `.sh` script.  Instead you can run the ".sh" script directly from a ssh session on the target device.
+
+The scripts support both balena and docker, so they can run on Pisces, Sensecap, Nebra, and other Raspberry PI devices having docker or balena installed. It will create configuration folders in /mnt/data/ or /usr/depin though.
+
+The scripts will ask you all required info for onboarding.  
+You can also run the scripts multiple times.
 
 ## From Windows
 - Install the latest version of [microsoft powershell](https://www.microsoft.com/store/productId/9MZ1SNWT0N5D) from the windows store.
@@ -53,6 +48,8 @@ pwsh -ExecutionPolicy Bypass -Command "iwr 'https://raw.githubusercontent.com/so
 - ssh into your device and run:
 ```shell
 bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/.../zzzzzzzzzz.sh')"
+#or
+sudo bash ...
 ```
 
 Replace `zzzzzzzzzz` by one of the existing file name.
@@ -60,14 +57,46 @@ Replace `zzzzzzzzzz` by one of the existing file name.
 Ex:
 ```
 bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/wingbits/wingbits.sh')"
+#or
+sudo bash ...
 ```
+
+# Automatic Updates
+
+To update the containers automatically, use watchtower.
+
+All nebra firmwares, Sensecap:
+```
+balena run -d \
+      --name watchtower \
+      --volume "/var/run/balena.sock":/var/run/docker.sock \
+      --label=com.centurylinklabs.watchtower.enable=true \
+      containrrr/watchtower \
+      --label-enable
+
+balena run --name watchtower0 --volume "/var/run/balena.sock":/var/run/docker.sock  --label=com.centurylinklabs.watchtower.enable=true  containrrr/watchtower --label-enable --run-once
+balena rm watchtower0
+```
+
+Pisces P100, other devices:
+```
+sudo docker run -d \
+      --name watchtower \
+      --volume "/var/run/docker.sock":/var/run/docker.sock \
+      --label=com.centurylinklabs.watchtower.enable=true \
+      containrrr/watchtower \
+      --label-enable
+
+sudo docker run --name watchtower0 --volume "/var/run/docker.sock":/var/run/docker.sock  --label=com.centurylinklabs.watchtower.enable=true  containrrr/watchtower --label-enable --run-once
+sudo docker rm watchtower0
+```
+
 
 # Tip
 
 * Star the project (tap on the start on top right)
 
-* Donate for a coffee if that script helped you !  
-I'd love to visit new countries in the world.
+* Donate if those scripts helped you !  
 
 Multi chain Metamask account (BSC, Etherum, Arbitrum, Doge, Polygon, Avalanche, ...):
 
