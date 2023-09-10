@@ -94,7 +94,7 @@ function checkBalenaDocker() {
   elif [[ $balena_installed -eq 1 ]]; then
       echo "balena"
   else
-      echo "sudo docker"
+      echo "docker"
   fi
 }
 
