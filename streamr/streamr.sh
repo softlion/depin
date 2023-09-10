@@ -88,7 +88,7 @@ function checkBalenaDocker() {
   elif [[ $balena_installed -eq 1 ]]; then
       echo "balena"
   else
-      echo "sudo docker"
+      echo "docker"
   fi
 }
 
@@ -122,6 +122,7 @@ echo "(you can run this script multiple times without any issue)"
 
 hypervisor=$(checkBalenaDocker)
 runHypervisor="$([[ "$hypervisor" == "docker" ]] && echo 'sudo docker' || echo 'balena')"
+echo "Using hypervisor $hypervisor and run $runHypervisor"
 createProjectFolder "streamr/1"
 installWatchTower
 installStreamr
