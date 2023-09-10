@@ -34,3 +34,14 @@ Other raspberry pi devices with docker installed:
 sudo bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/streamr/streamr.sh')"
 ```
 
+# Tip
+
+* Star the project (tap on the start on top right)
+
+* Donate if those scripts helped you !  
+
+Multi chain Metamask account (BSC, Etherum, Arbitrum, Doge, Polygon, Avalanche, ...):
+
+0xe0018e74856e68A62d142Ab1C77b0F7B0ca3a2Ea
+
+![image](https://github.com/softlion/defli/assets/190756/9d4f1589-5f7f-46f4-ae0d-1190d2e22762)
