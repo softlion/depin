@@ -5,6 +5,9 @@ Connecting Web3 with real time data
 [Website](https://streamr.network/)  
 [Discord](https://discord.gg/gZAm8P7hK8)
 
+You must [stake 100 DATA](https://streamr.network/stake-and-earn/) to get rewards.  
+Sent from Uniswap or Binance.
+
 # Script
 
 The script will first run the streamr config container to create the config json file.  
