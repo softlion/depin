@@ -6,7 +6,7 @@ Connecting Web3 with real time data
 [Discord](https://discord.gg/gZAm8P7hK8)
 
 You must [stake 100 DATA](https://streamr.network/stake-and-earn/) on your Polygon wallet to get rewards.  
-Sent from Uniswap or Binance.
+Sent from Uniswap or Binance or [Quickswap](https://quickswap.exchange/#/swap?outputCurrency=0x3a9A81d576d83FF21f26f325066054540720fC34&swapIndex=0&currency0=ETH).
 
 # Script
 
