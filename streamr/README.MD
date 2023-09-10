@@ -2,7 +2,7 @@
 
 Connecting Web3 with real time data
 
-[Website](https://streamr.network/)
+[Website](https://streamr.network/)  
 [Discord](https://discord.gg/gZAm8P7hK8)
 
 # Script
