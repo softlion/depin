@@ -1,5 +1,9 @@
 function installStreamr() {
 
+  container="streamr1"
+  if $runHypervisor container inspect "$container" >/dev/null 2>&1; then $runHypervisor rm -f "$container"; fi;
+
+
   startConfigWizard=true
   if [ -e "$projectFolder/config/default.json" ]; then
     result=$(prompt_with_default "Rerun the configuration wizard? (y/n)" "n")
@@ -21,10 +25,7 @@ function installStreamr() {
     #"Path to store the configuration": Press 'enter' (keep the default path).
   fi
 
-  #(re)start node
-  container="streamr1"
-  if $runHypervisor container inspect "$container" >/dev/null 2>&1; then $runHypervisor rm -f "$container"; fi;
-
+  #start node
   $runHypervisor run -d --name "$container" \
     --restart unless-stopped \
     -v "$projectFolder":/home/streamr/.streamr \
