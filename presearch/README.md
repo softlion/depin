@@ -5,7 +5,7 @@
 [Discord](https://discord.com/invite/KUpshRZz2n) (less active than telegram)
 
 You must stake 1000 pre to get the rewards. [See doc](https://account.presearch.com/tokens/usage-rewards).  
-Buy pre: [uniswap.org](uniswap.org) [Tous les sites](https://presearch.io/exchanges)
+Buy PRE on Etherum: [uniswap.org](uniswap.org) [Tous les sites](https://presearch.io/exchanges)
 
 ## Getting Started
 
