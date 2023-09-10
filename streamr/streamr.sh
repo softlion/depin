@@ -1,20 +1,35 @@
- 
-function installPresearch(){
-    if [ -z "$REGISTRATION_CODE" ]; then
-        echo "Enter your node registration code from"
-        echo "https://nodes.presearch.com/dashboard"
-        REGISTRATION_CODE=$(prompt_with_default "Node registration code" "")
-    fi
+function installStreamr() {
 
-    container="presearch"
-    if $runHypervisor container inspect "$container" >/dev/null 2>&1; then $runHypervisor rm -f "$container"; fi;
+  startConfigWizard=true
+  if [ -e "$projectFolder/config/default.json" ]; then
+    result=$(prompt_with_default "Rerun the configuration wizard? (y/n)" "n")
+    [ "$result" != "y" ] && startConfigWizard=false;
+  fi
 
-    $runHypervisor run -dt --name "$container" \
-      --restart=unless-stopped \
-      -v "$projectFolder":/app/node \
-      --label=com.centurylinklabs.watchtower.enable=true \
-      -e REGISTRATION_CODE="$REGISTRATION_CODE" \
-      presearch/node; 
+  if [ "$startConfigWizard" = true ]; then
+    #start configuration wizard
+    $runHypervisor run -it \
+      --user "$(id -u):$(id -g)" \
+      -v "$projectFolder":/home/streamr/.streamr \
+      streamr/broker-node:latest \
+      bin/config-wizard;
+
+    #This creates the config in "$projectFolder/config/default.json"
+    #Choose "Generate" for Etherum private key. Do not import an existing one !
+    #Plugins to enable: press enter (do not select/enable any additional plugins).
+    #Set staking key: yes (enter your eth wallet public address)
+    #"Path to store the configuration": Press 'enter' (keep the default path).
+  fi
+
+  #(re)start node
+  container="streamr1"
+  if $runHypervisor container inspect "$container" >/dev/null 2>&1; then $runHypervisor rm -f "$container"; fi;
+
+  $runHypervisor run -d --name "$container" \
+    --restart unless-stopped \
+    -v "$projectFolder":/home/streamr/.streamr \
+    --label=com.centurylinklabs.watchtower.enable=true \
+    streamr/broker-node:latest;
 }
 
 
@@ -39,28 +54,6 @@ function createProjectFolder(){
 
         echo "done creating"
     fi;
-}
-
-function prompt_with_default() {
-  local prompt="$1"
-  local default_value="$2"
-  local user_input
-
-  while true; do
-    read -p "$prompt [$default_value]: " user_input
-
-    if [ -z "$user_input" ]; then
-      user_input="$default_value"
-    fi
-
-    if [ -n "$user_input" ]; then
-      break
-    else
-      echo "Value cannot be empty. Please enter a value."
-    fi
-  done
-
-  echo "$user_input"
 }
 
 function installWatchTower() {
@@ -98,7 +91,6 @@ function checkBalenaDocker() {
   fi
 }
 
-
 function displayQr() {
 echo "--------------------------------------"
 echo "You liked this script ?"
@@ -124,14 +116,14 @@ echo ""
 echo "--------------------------------------"
 }
 
-echo "Starting Presearch installation"
-echo "(you can run this script multiple times)"
+echo "Installing a container to run a mysterium node on balena or docker"
+echo "(you can run this script multiple times without any issue)"
 
 hypervisor=$(checkBalenaDocker)
 runHypervisor="$([[ "$hypervisor" == "docker" ]] && echo 'sudo docker' || echo 'balena')"
-createProjectFolder "presearch"
+createProjectFolder "streamr/1"
 installWatchTower
-installPresearch
+installStreamr
 displayQr
 echo "finished"
 echo "validation: "
