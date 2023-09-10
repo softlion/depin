@@ -1,6 +1,6 @@
 # Presearch
 
-[Website](https://presearch.com/signup?rid=4757851)
+[Website](https://presearch.com/signup?rid=4757851)  
 [Community on Telegram](https://t.me/PresearchNodes)  
 [Discord](https://discord.com/invite/KUpshRZz2n) (less active than telegram)
 
