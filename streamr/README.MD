@@ -26,13 +26,11 @@ You can run it multiple times.
 On nebra and sensecap:
 
 ```shell
-bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/mysterium/mysterium.sh')"
+bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/streamr/streamr.sh')"
 ```
 
 Other raspberry pi devices with docker installed:
 ```shell
-sudo bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/mysterium/mysterium.sh')"
+sudo bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/streamr/streamr.sh')"
 ```
-
-## Information
 
