@@ -50,7 +50,7 @@ function createProjectFolder(){
         else
             sudo mkdir -p "$folder";
             sudo chown -R $(whoami) "$folder"
-            chmod -R u+rw "$folder"
+            sudo chmod -R u+rw "$folder"
         fi
 
         echo "done creating"
