@@ -23,6 +23,12 @@ function installStreamr() {
     #Plugins to enable: press enter (do not select/enable any additional plugins).
     #Set staking key: yes (enter your eth wallet public address)
     #"Path to store the configuration": Press 'enter' (keep the default path).
+
+    if [ "$hypervisor" = "balena" ]; then
+        chmod 666 "$projectFolder/config/default.json"
+    else
+        sudo chmod 666 "$projectFolder/config/default.json"
+    fi
   fi
 
   #start node
@@ -50,8 +56,7 @@ function createProjectFolder(){
         else
             sudo mkdir -p "$folder";
             sudo chown -R admin "$folder"
-            #sudo chmod -R u+rw "$folder"
-            sudo chmod -R 777 "$folder"
+            sudo chmod -R 666 "$folder"
         fi
 
         echo "done creating"
