@@ -20,16 +20,9 @@ That creates a `config.json` file in `/usr/src/depin/streamr/1/.streamr/` or `/m
 ? Do you want to participate in mining and staking? Yes
 ? It is recommended to set a separate beneficiary address for security reasons. Would you like to set one? Yes
 ? Please provide a beneficiary address (your etherum public address) 0x112233445566778899aabbccddeeff
-? Select a path to store the generated config in /root/.streamr/config/default.json
-```
-!! Change the path to `/home/streamr/.streamr/config/default.json` !!
-```
+? Select a path to store the generated config in (press enter to accept the default one)
 : Welcome to the Streamr Network
-: Your node's generated name is Ancient Harvest Direct.
-: View your node in the Network Explorer:
-: https://streamr.network/network-explorer/nodes/0x112233445566778899aabbccddeeff
-: You can start the broker now with
-: streamr-broker /home/streamr/.streamr/config/default.json
+: ...
 ```
 
 The script then starts the node.  
