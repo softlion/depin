@@ -19,12 +19,6 @@ function installStreamr() {
       streamr/broker-node:latest \
       bin/config-wizard;
 
-    #This creates the config in "$projectFolder/config/default.json"
-    #Choose "Generate" for Etherum private key. Do not import an existing one !
-    #Plugins to enable: press enter (do not select/enable any additional plugins).
-    #Set staking key: yes (enter your eth wallet public address)
-    #"Path to store the configuration": Press 'enter' (keep the default path).
-
     if [ "$hypervisor" = "balena" ]; then
         chmod 666 "$projectFolder/config/default.json"
     else
@@ -36,6 +30,7 @@ function installStreamr() {
   $runHypervisor run -d --name "$container" \
     --restart unless-stopped \
     -v "$projectFolder":/home/streamr/.streamr \
+    -v "$projectFolder":/root/.streamr \
     --label=com.centurylinklabs.watchtower.enable=true \
     streamr/broker-node:latest;
 }
@@ -57,7 +52,6 @@ function createProjectFolder(){
         else
             sudo mkdir -p "$folder";
             sudo chown $(whoami):sudo "$folder"
-            #sudo chmod -R 777 "$folder"
         fi
 
         echo "done creating"
