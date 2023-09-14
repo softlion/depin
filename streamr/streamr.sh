@@ -49,7 +49,7 @@ function createProjectFolder(){
             mkdir -p "$folder";
         else
             sudo mkdir -p "$folder";
-            #sudo chown -R root "$folder"
+            sudo chown -R admin "$folder"
             #sudo chmod -R u+rw "$folder"
             sudo chmod -R 777 "$folder"
         fi
