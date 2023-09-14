@@ -15,6 +15,7 @@ function installStreamr() {
     $runHypervisor run -it \
       --user "$(id -u):$(id -g)" \
       -v "$projectFolder":/home/streamr/.streamr \
+      -v "$projectFolder":/home/streamr/.streamr \
       streamr/broker-node:latest \
       bin/config-wizard;
 
@@ -49,8 +50,8 @@ function createProjectFolder(){
             mkdir -p "$folder";
         else
             sudo mkdir -p "$folder";
-            sudo chown -R $(whoami) "$folder"
-            sudo chmod -R u+rw "$folder"
+            #sudo chown -R root "$folder"
+            #sudo chmod -R u+rw "$folder"
         fi
 
         echo "done creating"
