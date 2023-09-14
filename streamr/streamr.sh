@@ -51,6 +51,7 @@ function createProjectFolder(){
             sudo mkdir -p "$folder";
             #sudo chown -R root "$folder"
             #sudo chmod -R u+rw "$folder"
+            sudo chmod -R 777 "$folder"
         fi
 
         echo "done creating"
