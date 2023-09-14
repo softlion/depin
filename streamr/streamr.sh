@@ -15,7 +15,6 @@ function installStreamr() {
     $runHypervisor run -it \
       --user "$(id -u):$(id -g)" \
       -v "$projectFolder":/home/streamr/.streamr \
-      -v "$projectFolder":/home/streamr/.streamr \
       streamr/broker-node:latest \
       bin/config-wizard;
 
