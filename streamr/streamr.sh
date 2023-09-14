@@ -12,9 +12,10 @@ function installStreamr() {
 
   if [ "$startConfigWizard" = true ]; then
     #start configuration wizard
-    #      --user "$(id -u):$(id -g)" \
     $runHypervisor run -it \
+      --user "$(id -u):$(id -g)" \
       -v "$projectFolder":/home/streamr/.streamr \
+      -v "$projectFolder":/root/.streamr \
       streamr/broker-node:latest \
       bin/config-wizard;
 
@@ -24,11 +25,11 @@ function installStreamr() {
     #Set staking key: yes (enter your eth wallet public address)
     #"Path to store the configuration": Press 'enter' (keep the default path).
 
-    #if [ "$hypervisor" = "balena" ]; then
-    #    chmod 666 "$projectFolder/config/default.json"
-    #else
-    #    sudo chmod 666 "$projectFolder/config/default.json"
-    #fi
+    if [ "$hypervisor" = "balena" ]; then
+        chmod 666 "$projectFolder/config/default.json"
+    else
+        sudo chmod 666 "$projectFolder/config/default.json"
+    fi
   fi
 
   #start node
