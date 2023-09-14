@@ -10,34 +10,29 @@ Sent from Uniswap or Binance or [Quickswap](https://quickswap.exchange/#/swap?ou
 
 # Script
 
-The script will first run the streamr config container to create the config json file.  
-Streamr will ask you a few questions, the answers are on the [streamr website](https://docs.streamr.network/node-runners/run-a-node/)
+The script 1st run the config wizard.  
+Streamr will ask you a few questions, the answers are on the [streamr website](https://docs.streamr.network/node-runners/run-a-node/) and also below.  
+That creates a `config.json` file in `/usr/src/depin/streamr/1/.streamr/` or `/mnt/data/depin/streamr/1/.streamr/`
 
 ```
-#Choose "Generate" for Etherum private key. Do not import an existing one ! 
-(well, you can import if you rerun the script a 2nd time on the same node).
-#Plugins to enable: press enter (do not select/enable any additional plugins).
-#Set staking key: yes (enter your eth wallet public address)
-#"Path to store the configuration": Press 'enter' (keep the default path).
-
-
 ? Do you want to generate a new Ethereum private key or import an existing one? Generate
-? Please provide the private key to import [hidden]
-? Select the plugins to enable
+? Select the plugins to enable (none, press enter)
 ? Do you want to participate in mining and staking? Yes
 ? It is recommended to set a separate beneficiary address for security reasons. Would you like to set one? Yes
-? Please provide a beneficiary address (public key) 0x112233445566778899aabbccddeeff
+? Please provide a beneficiary address (your etherum public address) 0x112233445566778899aabbccddeeff
 ? Select a path to store the generated config in /root/.streamr/config/default.json
+```
+!! Change the path to `/home/streamr/.streamr/config/default.json` !!
+```
 : Welcome to the Streamr Network
 : Your node's generated name is Ancient Harvest Direct.
 : View your node in the Network Explorer:
 : https://streamr.network/network-explorer/nodes/0x112233445566778899aabbccddeeff
 : You can start the broker now with
-: streamr-broker /root/.streamr/config/default.json
+: streamr-broker /home/streamr/.streamr/config/default.json
 ```
 
-Then it will start the node container with this config file.
-
+The script then starts the node.  
 You can run it multiple times.
 
 ## Installation
