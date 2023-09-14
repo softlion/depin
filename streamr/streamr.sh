@@ -58,6 +58,28 @@ function createProjectFolder(){
     fi;
 }
 
+function prompt_with_default() {
+  local prompt="$1"
+  local default_value="$2"
+  local user_input
+
+  while true; do
+    read -p "$prompt [$default_value]: " user_input
+
+    if [ -z "$user_input" ]; then
+      user_input="$default_value"
+    fi
+
+    if [ -n "$user_input" ]; then
+      break
+    else
+      echo "Value cannot be empty. Please enter a value."
+    fi
+  done
+
+  echo "$user_input"
+}
+
 function installWatchTower() {
 
   #install watchtower
