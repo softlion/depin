@@ -118,7 +118,7 @@ echo ""
 echo "--------------------------------------"
 }
 
-echo "Installing a container to run a mysterium node on balena or docker"
+echo "Installing a container to run a streamr node on balena or docker"
 echo "(you can run this script multiple times without any issue)"
 
 hypervisor=$(checkBalenaDocker)
