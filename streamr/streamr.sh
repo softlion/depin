@@ -14,8 +14,8 @@ function installStreamr() {
 
   if [ "$startConfigWizard" = true ]; then
     echo "Starting configuration wizard"
+    #  --user "$(id -u):$(id -g)" \
     $runHypervisor run -it \
-      --user "$(id -u):$(id -g)" \
       -v "$projectFolder":/home/streamr/.streamr \
       -v "$projectFolder":/root/.streamr \
       streamr/broker-node:latest \
@@ -152,6 +152,9 @@ echo "--------------------------------------"
 
 echo "Installing a container to run a streamr node on balena or docker"
 echo "(you can run this script multiple times without any issue)"
+
+set -e
+set -o pipefail
 
 hypervisor=$(checkBalenaDocker)
 runHypervisor="$([[ "$hypervisor" == "docker" ]] && echo 'sudo docker' || echo 'balena')"
