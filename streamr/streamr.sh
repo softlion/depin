@@ -22,9 +22,9 @@ function installStreamr() {
       bin/config-wizard;
 
     if [ "$hypervisor" = "balena" ]; then
-        chmod 666 "$projectFolder/config/default.json"
+        chmod 664 "$projectFolder/config/default.json"
     else
-        sudo chmod 666 "$projectFolder/config/default.json"
+        sudo chmod 664 "$projectFolder/config/default.json"
     fi
   fi
 
@@ -55,7 +55,7 @@ function createProjectFolder(){
         else
             sudo mkdir -p "$folder";
             sudo chown $(whoami):sudo "$folder"
-            sudo chmod 666 "$folder"
+            sudo chmod 775 "$folder"
         fi
 
         echo "done creating"
