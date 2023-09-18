@@ -12,8 +12,8 @@ function installStreamr() {
 
   if [ "$startConfigWizard" = true ]; then
     #start configuration wizard
+    #  --user "$(id -u):$(id -g)" \
     $runHypervisor run -it \
-      --user "$(id -u):$(id -g)" \
       -v "$projectFolder":/home/streamr/.streamr \
       -v "$projectFolder":/root/.streamr \
       streamr/broker-node:latest \
@@ -52,6 +52,7 @@ function createProjectFolder(){
         else
             sudo mkdir -p "$folder";
             sudo chown $(whoami):sudo "$folder"
+            sudo chmod 666 "$folder"
         fi
 
         echo "done creating"
