@@ -25,6 +25,7 @@ function installStreamr() {
         chmod 664 "$projectFolder/config/default.json"
     else
         sudo chmod 664 "$projectFolder/config/default.json"
+        sudo chmod 775 "$folder/config"
     fi
   fi
 
@@ -59,7 +60,7 @@ function createProjectFolder(){
             sudo chmod 775 "$folder"
 
             sudo chown $(whoami):sudo "$folder/config"
-            sudo chmod 775 "$folder/config"
+            sudo chmod 777 "$folder/config"
         fi
 
         echo "done creating"
