@@ -1,19 +1,21 @@
 function installStreamr() {
 
+  echo "Checking containers"
   container="streamr1"
   if $runHypervisor container inspect "$container" >/dev/null 2>&1; then $runHypervisor rm -f "$container"; fi;
 
 
   startConfigWizard=true
   if [ -e "$projectFolder/config/default.json" ]; then
+    echo "A configuration file already exists."
     result=$(prompt_with_default "Rerun the configuration wizard? (y/n)" "n")
     [ "$result" != "y" ] && startConfigWizard=false;
   fi
 
   if [ "$startConfigWizard" = true ]; then
-    #start configuration wizard
-    #  --user "$(id -u):$(id -g)" \
+    echo "Starting configuration wizard"
     $runHypervisor run -it \
+      --user "$(id -u):$(id -g)" \
       -v "$projectFolder":/home/streamr/.streamr \
       -v "$projectFolder":/root/.streamr \
       streamr/broker-node:latest \
@@ -27,6 +29,7 @@ function installStreamr() {
   fi
 
   #start node
+  echo "Starting node"
   $runHypervisor run -d --name "$container" \
     --restart unless-stopped \
     -v "$projectFolder":/home/streamr/.streamr \
@@ -84,6 +87,7 @@ function prompt_with_default() {
 function installWatchTower() {
 
   #install watchtower
+  echo "Checking Watchtower"
   watchtowerContainerID=$($runHypervisor ps -aqf name="watchtower")
   if [ -z "$watchtowerContainerID" ]; then watchtowerInstalled=false; else watchtowerInstalled=true; fi
 
@@ -151,6 +155,6 @@ createProjectFolder "streamr/1"
 installWatchTower
 installStreamr
 displayQr
-echo "finished"
-echo "validation: "
+echo "finished. Validation: "
 echo "$runHypervisor logs -f $container"
+echo "Or open https://brubeckscan.app and enter the node address."
