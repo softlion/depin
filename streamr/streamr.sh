@@ -53,6 +53,11 @@ function createProjectFolder(){
 
         if [ "$hypervisor" = "balena" ]; then
             mkdir -p "$folder/config";
+
+            chown $(whoami):sudo "$folder"
+            chmod 775 "$folder"
+            chown $(whoami):sudo "$folder/config"
+            chmod 777 "$folder/config"
         else
             sudo mkdir -p "$folder/config";
 
