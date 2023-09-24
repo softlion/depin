@@ -1,34 +1,40 @@
 function installStreamr() {
 
+  echo "Checking containers"
   container="streamr1"
   if $runHypervisor container inspect "$container" >/dev/null 2>&1; then $runHypervisor rm -f "$container"; fi;
 
 
   startConfigWizard=true
   if [ -e "$projectFolder/config/default.json" ]; then
+    echo "A configuration file already exists."
     result=$(prompt_with_default "Rerun the configuration wizard? (y/n)" "n")
     [ "$result" != "y" ] && startConfigWizard=false;
   fi
 
   if [ "$startConfigWizard" = true ]; then
-    #start configuration wizard
+    echo "Starting configuration wizard"
+    #  --user "$(id -u):$(id -g)" \
     $runHypervisor run -it \
-      --user "$(id -u):$(id -g)" \
       -v "$projectFolder":/home/streamr/.streamr \
+      -v "$projectFolder":/root/.streamr \
       streamr/broker-node:latest \
       bin/config-wizard;
 
-    #This creates the config in "$projectFolder/config/default.json"
-    #Choose "Generate" for Etherum private key. Do not import an existing one !
-    #Plugins to enable: press enter (do not select/enable any additional plugins).
-    #Set staking key: yes (enter your eth wallet public address)
-    #"Path to store the configuration": Press 'enter' (keep the default path).
+    if [ "$hypervisor" = "balena" ]; then
+        chmod 664 "$projectFolder/config/default.json"
+    else
+        sudo chmod 664 "$projectFolder/config/default.json"
+        sudo chmod 775 "$folder/config"
+    fi
   fi
 
   #start node
+  echo "Starting node"
   $runHypervisor run -d --name "$container" \
     --restart unless-stopped \
     -v "$projectFolder":/home/streamr/.streamr \
+    -v "$projectFolder":/root/.streamr \
     --label=com.centurylinklabs.watchtower.enable=true \
     streamr/broker-node:latest;
 }
@@ -46,20 +52,52 @@ function createProjectFolder(){
         echo "creating $folder"
 
         if [ "$hypervisor" = "balena" ]; then
-            mkdir -p "$folder";
+            mkdir -p "$folder/config";
+
+            chown $(whoami):sudo "$folder"
+            chmod 775 "$folder"
+            chown $(whoami):sudo "$folder/config"
+            chmod 777 "$folder/config"
         else
-            sudo mkdir -p "$folder";
-            sudo chown -R $(whoami) "$folder"
-            chmod -R u+rw "$folder"
+            sudo mkdir -p "$folder/config";
+
+            sudo chown $(whoami):sudo "$folder"
+            sudo chmod 775 "$folder"
+
+            sudo chown $(whoami):sudo "$folder/config"
+            sudo chmod 777 "$folder/config"
         fi
 
         echo "done creating"
     fi;
 }
 
+function prompt_with_default() {
+  local prompt="$1"
+  local default_value="$2"
+  local user_input
+
+  while true; do
+    read -p "$prompt [$default_value]: " user_input
+
+    if [ -z "$user_input" ]; then
+      user_input="$default_value"
+    fi
+
+    if [ -n "$user_input" ]; then
+      break
+    else
+      echo "Value cannot be empty. Please enter a value."
+    fi
+  done
+
+  echo "$user_input"
+}
+
 function installWatchTower() {
 
   #install watchtower
+  echo "Checking Watchtower"
   watchtowerContainerID=$($runHypervisor ps -aqf name="watchtower")
   if [ -z "$watchtowerContainerID" ]; then watchtowerInstalled=false; else watchtowerInstalled=true; fi
 
@@ -117,8 +155,11 @@ echo ""
 echo "--------------------------------------"
 }
 
-echo "Installing a container to run a mysterium node on balena or docker"
+echo "Installing a container to run a streamr node on balena or docker"
 echo "(you can run this script multiple times without any issue)"
+
+set -e
+set -o pipefail
 
 hypervisor=$(checkBalenaDocker)
 runHypervisor="$([[ "$hypervisor" == "docker" ]] && echo 'sudo docker' || echo 'balena')"
@@ -127,6 +168,6 @@ createProjectFolder "streamr/1"
 installWatchTower
 installStreamr
 displayQr
-echo "finished"
-echo "validation: "
+echo "finished. Validation: "
 echo "$runHypervisor logs -f $container"
+echo "Or open https://brubeckscan.app and enter the node address."
