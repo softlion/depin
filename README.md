@@ -67,7 +67,7 @@ To update the containers automatically, use watchtower.
 
 All nebra firmwares, Sensecap:
 ```
-balena run -d \
+balena run -d --restart=always \
       --name watchtower \
       --volume "/var/run/balena.sock":/var/run/docker.sock \
       --label=com.centurylinklabs.watchtower.enable=true \
@@ -80,7 +80,7 @@ balena rm watchtower0
 
 Pisces P100, other devices:
 ```
-sudo docker run -d \
+sudo docker run -d --restart=always \
       --name watchtower \
       --volume "/var/run/docker.sock":/var/run/docker.sock \
       --label=com.centurylinklabs.watchtower.enable=true \
