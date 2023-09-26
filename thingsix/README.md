@@ -21,7 +21,7 @@ note: to receive rewards for ThingsIX, your gateway must be mapped by a ThingsIX
 On `nebra` and `sensecap` devices (ie: any device using `balena`):
 
 ```shell
-sh -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/thingsix/thingsix.sh')"
+bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/thingsix/thingsIX.sh')"
 ```
 
 Other raspberry pi devices with `docker` installed (including `pisces`):  
@@ -29,7 +29,7 @@ not yet released (already written and tested)
 
 From Windows:
 ```powershell
-pwsh -ExecutionPolicy Bypass -Command "iwr 'https://raw.githubusercontent.com/softlion/depin/main/thingsix/thingsix.ps1' | iex"
+pwsh -ExecutionPolicy Bypass -Command "iwr 'https://raw.githubusercontent.com/softlion/depin/main/thingsix/thingsIX.ps1' | iex"
 ```
 
 ## Advanced
