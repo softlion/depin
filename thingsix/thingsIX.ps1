@@ -30,7 +30,7 @@ SSH user defaults to root
   Write-Host "Connecting to $($User)@$($IP):$($Port)"
 
   if(!$Debug) {
-    $all = iwr 'https://raw.githubusercontent.com/softlion/depin/main/thingsIX/thingsIX.sh' -UseBasicParsing | % Content
+    $all = iwr 'https://raw.githubusercontent.com/softlion/depin/main/thingsix/thingsIX.sh' -UseBasicParsing | % Content
   } else {
     $all = Get-Content -Raw -Path (Join-Path $PSScriptRoot "thingsIX.sh")
   }

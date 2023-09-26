@@ -31,7 +31,7 @@ isPartialContainerRunning(){
     containerName=$(docker ps --filter "name=^$partialContainerName" --format "{{.Names}}")
 
     if [ -n "$containerName" ]; then
-        containerStatus=$(docker inspect -f "{{.State.Status}}" "$containerName")
+        containerStatus=$(docker container inspect -f "{{.State.Status}}" "$containerName")
         if [[ "$containerStatus" == "running" ]]; then
             echo "$containerName";
             return;
@@ -93,7 +93,7 @@ startThingsIXForwarder() {
 }
 
 run() {
-    echo "starting container check loop"
+    echo "starting container check loop (checking every 70s)"
 
     while true; do
         sleep 10  # Wait 10s
@@ -113,19 +113,24 @@ run() {
             network=$(docker network ls --filter "driver=bridge" --format "{{.Name}}" | grep "_default$")
 
             #helium miner IP
-            containerName=$(docker ps --filter "name=^helium-miner_" --format "{{.Names}}")
-            heliumMinerIP=$(docker inspect --format="{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" $containerName)
+            containerName=$(docker ps -a --filter "name=^helium-miner_" --format "{{.Names}}")
+            if [ -z "$containerName" ]; then
+                echo "error: container helium-miner_* not found. Can not continue"
+                return;
+            fi
+            heliumMinerIP=$(docker container inspect --format="{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" $containerName)
 
             if [ "$heliumMinerIP" == "" ]; then
-                echo "error: container helium-miner_* not found. Can not continue"
-                return
+                echo "error: container helium-miner_* not running. Starting it and retrying".
+                docker start "$containerName"
+                continue;
             else
                 stopPartialContainer "multiplexer_"
                 startThingsIXForwarder "$network"
                 sleep 5  # Wait 5s
                 startLorawanMultiplexer "$network" "$heliumMinerIP"
                 sleep 5  # Wait 5s
-                packetForwarderContainerName=$(docker ps --filter "name=^packet-forwarder_" --format "{{.Names}}")
+                packetForwarderContainerName=$(docker ps -a --filter "name=^packet-forwarder_" --format "{{.Names}}")
                 docker restart "$packetForwarderContainerName"
                 echo "Dual mining with thingsIX Installed on this miner"
                 echo "Check forwarder logs with:"
