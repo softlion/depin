@@ -21,7 +21,7 @@ note: to receive rewards for ThingsIX, your gateway must be mapped by a ThingsIX
 On `nebra` and `sensecap` devices (ie: any device using `balena`):
 
 ```shell
-bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/thingsix/thingsix.sh')"
+sh -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/thingsix/thingsix.sh')"
 ```
 
 Other raspberry pi devices with `docker` installed (including `pisces`):  
