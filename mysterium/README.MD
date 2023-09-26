@@ -18,12 +18,12 @@ none, everything is ready
 On nebra and sensecap:
 
 ```shell
-sh -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/mysterium/mysterium.sh')"
+bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/mysterium/mysterium.sh')"
 ```
 
 Other raspberry pi devices:
 ```shell
-sudo sh -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/mysterium/mysterium.sh')"
+sudo bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/mysterium/mysterium.sh')"
 ```
 
 ## Information
