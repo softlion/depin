@@ -47,9 +47,9 @@ pwsh -ExecutionPolicy Bypass -Command "iwr 'https://raw.githubusercontent.com/so
 ## Directly from within the device
 - ssh into your device and run:
 ```shell
-bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/.../zzzzzzzzzz.sh')"
+sh -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/.../zzzzzzzzzz.sh')"
 #or
-sudo bash ...
+sudo sh ...
 ```
 
 Replace `zzzzzzzzzz` by one of the existing file name.
