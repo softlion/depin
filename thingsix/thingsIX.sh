@@ -133,7 +133,11 @@ run() {
                 continue;
             else
                 stopPartialContainer "multiplexer_"
+                
+                #crankk-update restarts crankk-pktfwd when it is not running
+                stopPartialContainer "crankk-update"
                 stopPartialContainer "crankk-pktfwd"
+                
                 startThingsIXForwarder "$network"
                 sleep 5  # Wait 5s
                 startLorawanMultiplexer "$network" "$heliumMinerIP"
