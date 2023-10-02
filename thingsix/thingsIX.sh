@@ -120,9 +120,14 @@ run() {
                 return;
             fi
             heliumMinerIP=$(docker container inspect --format="{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" $containerName)
+            containerRunningName=$(docker ps --filter "name=miner_" --format "{{.Names}}")
+            if [ "$containerRunningName" != "" && "$heliumMinerIP" == "" ]; then
+                #sensecap: network=host
+                heliumMinerIP="0.0.0.0"
+            fi
 
-            if [ "$heliumMinerIP" == "" ]; then
-                echo "error: container helium-miner_* not running. Starting it and retrying".
+            if [ "$containerRunningName" == "" ]; then
+                echo "error: container $containerName not running. Starting it and retrying".
                 docker start "$containerName"
                 continue;
             else
