@@ -59,7 +59,7 @@ startLorawanMultiplexer() {
     removeContainer "multiplexer"
 
     echo "Starting lorawan multiplexer."
-    echo "Source: multiplexer:1681/udp, Targets: $heliumMinerIP:1680/udp (helium miner), thingsix-forwarder:1685/udp (thingsix miner)"
+    echo "Source: multiplexer:1681/udp, Targets: $heliumMinerIP:1680/udp (helium miner), thingsix-forwarder:1685/udp (thingsix miner), localhost:1700 (Crankk)"
     docker run -d --restart unless-stopped \
         --name multiplexer \
         --hostname multiplexer \
@@ -68,7 +68,8 @@ startLorawanMultiplexer() {
         ghcr.io/thingsixfoundation/gwmp-mux:latest \
         --host 1681 \
         --client $heliumMinerIP:1680 \
-        --client thingsix-forwarder:1685
+        --client thingsix-forwarder:1685 \
+        --client 127.0.0.1:1700
 }
 
 #starts thingix forwarder
@@ -113,9 +114,9 @@ run() {
             network=$(docker network ls --filter "driver=bridge" --format "{{.Name}}" | grep "_default$")
 
             #helium miner IP
-            containerName=$(docker ps -a --filter "name=^helium-miner_" --format "{{.Names}}")
+            containerName=$(docker ps -a --filter "name=miner_" --format "{{.Names}}")
             if [ -z "$containerName" ]; then
-                echo "error: container helium-miner_* not found. Can not continue"
+                echo "error: container *miner_* not found. Can not continue"
                 return;
             fi
             heliumMinerIP=$(docker container inspect --format="{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" $containerName)
@@ -126,6 +127,7 @@ run() {
                 continue;
             else
                 stopPartialContainer "multiplexer_"
+                stopPartialContainer "crankk-pktfwd"
                 startThingsIXForwarder "$network"
                 sleep 5  # Wait 5s
                 startLorawanMultiplexer "$network" "$heliumMinerIP"
