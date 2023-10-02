@@ -101,10 +101,11 @@ run() {
 
         containerName=$(isPartialContainerRunning "multiplexer_")
         thingsIXforwarder=$(isPartialContainerRunning "thingsix-forwarder")
+        crankkforwarder=$(isPartialContainerRunning "crankk-pktfwd")
 
-        if [ "$containerName" != "" ] || [ "$thingsIXforwarder" == "" ]; then
+        if [ "$containerName" != "" ] || [ "$thingsIXforwarder" == "" ] || [ "$crankkforwarder" != "" ]; then
 
-            if [ "$containerName" != "" ]; then
+            if [ "$containerName" != "" ] || [ "$crankkforwarder" != "" ]; then
                 echo "detected another multiplexer running. updating."
             elif [ "$thingsIXforwarder" == "" ]; then
                 echo "detected that the thingsIX fowarder is not running. updating."
@@ -121,7 +122,7 @@ run() {
             fi
             heliumMinerIP=$(docker container inspect --format="{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" $containerName)
             containerRunningName=$(docker ps --filter "name=miner_" --format "{{.Names}}")
-            if [ "$containerRunningName" != "" && "$heliumMinerIP" == "" ]; then
+            if [ "$containerRunningName" != "" ] && [ "$heliumMinerIP" == "" ]; then
                 #sensecap: network=host
                 heliumMinerIP="0.0.0.0"
             fi
