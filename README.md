@@ -74,8 +74,7 @@ balena run -d --restart=always \
       containrrr/watchtower \
       --label-enable
 
-balena run --name watchtower0 --volume "/var/run/balena.sock":/var/run/docker.sock  --label=com.centurylinklabs.watchtower.enable=true  containrrr/watchtower --label-enable --run-once
-balena rm watchtower0
+balena run --rm --volume "/var/run/balena.sock":/var/run/docker.sock  containrrr/watchtower --label-enable --run-once
 ```
 
 Pisces P100, other devices:
@@ -87,8 +86,7 @@ sudo docker run -d --restart=always \
       containrrr/watchtower \
       --label-enable
 
-sudo docker run --name watchtower0 --volume "/var/run/docker.sock":/var/run/docker.sock  --label=com.centurylinklabs.watchtower.enable=true  containrrr/watchtower --label-enable --run-once
-sudo docker rm watchtower0
+sudo docker run --rm --volume "/var/run/docker.sock":/var/run/docker.sock containrrr/watchtower --label-enable --run-once
 ```
 
 
