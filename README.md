@@ -12,7 +12,7 @@ It is built on my spare time.
 🚨 Any project can be a SCAM or a PONZI. Do your own research.  
 🚨 Start by reading [how to detect a SCAM](https://www.investopedia.com/articles/forex/042315/beware-these-five-bitcoin-scams.asp)  
 🚨 In a PONZI, newcomers "pay" for the ones who are already in the project.  
-🚨 Beware that `socat` and `netcat` won't display any error when the destination IP:Port does not exist. And if it does not exist, then you know it's a ponzi.  
+🚨 Beware that having a free hosted `mongodb` is not a proof of existence. And if it does not exist, then you know it's a ponzi.  
 🚨  
 
 [List of DePIN projects, with study of their profitability](https://wholovesburrito.com/project-list/)
