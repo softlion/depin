@@ -15,6 +15,3 @@ Other raspberry pi devices (Pisces P100, ...):
 ```shell
 sudo bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/mysterium/mysterium.sh')"
 ```
-
-## Information
-
