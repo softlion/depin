@@ -1,5 +1,7 @@
 # Streamr
 
+🚨🚨 It looks like your IP will be banned from some website if you host a streamr node 🚨🚨 
+
 Connecting Web3 with real time data
 
 [Website](https://streamr.network/)  
