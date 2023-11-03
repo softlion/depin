@@ -21,9 +21,13 @@ function installWingbits() {
     if [ ! -d $folder ]; then mkdir -p $folder; fi;
 
 
-    if [ -z "$DEVICEID" ]; then    
+    if [ -z "$DEVICEID" ]; then  
+        if $hypervisor container inspect "vector" >/dev/null 2>&1; then
+            DEVICEID=$($hypervisor exec "vector" sh -c 'echo $DEVICE_ID')
+        fi
+    
         echo "Enter your Wingbits Device ID (your-wingbits-id)"
-        DEVICEID=$(prompt_with_default "Winbits ID" "")
+        DEVICEID=$(prompt_with_default "Winbits ID" "$DEVICEID")
     fi
 
     response=$(curl -o $wingbitsFolder/vector.toml --write-out "%{http_code}" 'https://gitlab.com/wingbits/config/-/raw/master/vector.toml')
