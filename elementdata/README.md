@@ -1,4 +1,11 @@
 # Element Data
+
+**********************************************************************
+# 🚨
+# THIS PROJECT HAS BEEN ABANDONED BY ITS OWNERS AND  IS NOW ARCHIVED
+# 🚨
+*********************************************************************
+
 [ElementData Website](https://elementdata.xyz/)  
 [ElementData Discord](https://discord.gg/ReZxN5W9Jw)  
 
