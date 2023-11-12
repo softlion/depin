@@ -3,7 +3,7 @@
 Connecting Web3 with real time data  
 
 [Website](https://streamr.network/)  
-[Discord](https://discord.gg/gZAm8P7hK8)
+[Discord](https://discord.gg/gZAm8P7hK8)  
 [Become a node operator](https://docs.streamr.network/guides/become-an-operator/)
 
 You must keep [100 DATA](https://streamr.network/stake-and-earn/) in the Polygon wallet associated with your nodes to get rewards.  
