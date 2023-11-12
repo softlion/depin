@@ -94,7 +94,7 @@ sudo docker run --rm --volume "/var/run/docker.sock":/var/run/docker.sock contai
 Auto updating is nice, but it downloads new versions without deleting the old inactive ones.  
 To delete the old inactive versions and reclaim disk space run:
 
-`docker image prune -a`
+`sudo docker image prune -a`
 or
 `balena image prune -a`
 
