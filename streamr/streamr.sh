@@ -1,3 +1,5 @@
+dockerContainer="streamr/broker-node:pretestnet"
+
 function installStreamr() {
 
   echo "Checking containers"
@@ -18,7 +20,7 @@ function installStreamr() {
     $runHypervisor run -it \
       -v "$projectFolder":/home/streamr/.streamr \
       -v "$projectFolder":/root/.streamr \
-      streamr/broker-node:latest \
+      "$dockerContainer" \
       bin/config-wizard;
 
     if [ "$hypervisor" = "balena" ]; then
@@ -36,7 +38,7 @@ function installStreamr() {
     -v "$projectFolder":/home/streamr/.streamr \
     -v "$projectFolder":/root/.streamr \
     --label=com.centurylinklabs.watchtower.enable=true \
-    streamr/broker-node:latest;
+    "$dockerContainer";
 }
 
 
