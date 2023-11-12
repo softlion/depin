@@ -10,6 +10,10 @@ Connecting Web3 with real time data
 You must keep [100 DATA](https://streamr.network/stake-and-earn/) in the Polygon wallet associated with your nodes to get rewards.  
 Sent from Uniswap or Binance or [Quickswap](https://quickswap.exchange/#/swap?outputCurrency=0x3a9A81d576d83FF21f26f325066054540720fC34&swapIndex=0&currency0=ETH).
 
+# News
+[Migrate from brubeck to testnet](https://docs.streamr.network/guides/become-an-operator/)
+* you have to rerun this script to update the docker container, auto update has been disabled by Streamr for now.
+
 # Script
 
 The script 1st run the config wizard.  
