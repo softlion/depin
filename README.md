@@ -89,6 +89,14 @@ sudo docker run -d --restart unless-stopped \
 sudo docker run --rm --volume "/var/run/docker.sock":/var/run/docker.sock containrrr/watchtower --label-enable --run-once
 ```
 
+## Cleaning disk space
+
+Auto updating is nice, but it downloads new versions without deleting the old inactive ones.  
+To delete the old inactive versions and reclaim disk space run:
+
+`docker image prune -a`
+or
+`balena image prune -a`
 
 # Tip
 
