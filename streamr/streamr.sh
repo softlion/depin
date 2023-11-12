@@ -172,4 +172,5 @@ installStreamr
 displayQr
 echo "finished. Validation: "
 echo "$runHypervisor logs -f $container"
-echo "Or open https://brubeckscan.app and enter the node address."
+echo "Note the node PUBLIC key above and add it to https://mumbai.streamr.network/hub/network/operators"
+echo "see https://docs.streamr.network/guides/become-an-operator/"
