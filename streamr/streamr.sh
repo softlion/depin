@@ -35,6 +35,7 @@ function installStreamr() {
   echo "Starting node"
   $runHypervisor run -d --name "$container" \
     --restart unless-stopped \
+    -p 32200:32200 \
     -v "$projectFolder":/home/streamr/.streamr \
     -v "$projectFolder":/root/.streamr \
     --label=com.centurylinklabs.watchtower.enable=true \
@@ -174,3 +175,4 @@ echo "finished. Validation: "
 echo "$runHypervisor logs -f $container"
 echo "Note the node PUBLIC key above and add it to https://mumbai.streamr.network/hub/network/operators"
 echo "see https://docs.streamr.network/guides/become-an-operator/"
+echo "Also open and forward port 32200 on your router to this machine"
