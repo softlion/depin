@@ -1,5 +1,7 @@
 # Presearch
 
+WARNING: it looks like you can be blacklisted from a range of websites after activating presearch.  
+
 [Website](https://presearch.com/signup?rid=4757851)  
 [Community on Telegram](https://t.me/PresearchNodes)  
 [Discord](https://discord.com/invite/KUpshRZz2n) (less active than telegram)
