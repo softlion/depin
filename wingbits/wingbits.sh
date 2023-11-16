@@ -30,13 +30,13 @@ function installWingbits() {
         DEVICEID=$(prompt_with_default "Winbits ID" "$DEVICEID")
     fi
 
-    response=$(curl -o $wingbitsFolder/vector.toml --write-out "%{http_code}" 'https://gitlab.com/wingbits/config/-/raw/master/vector.toml')
+    response=$(curl -o "$wingbitsFolder/vector.yaml" --write-out "%{http_code}" 'https://gitlab.com/wingbits/config/-/raw/master/vector.yaml')
     if [ "$response" -ne 200 ]; then
         echo "can not download from gitlab: HTTP error code $response"
         exit 1
     fi
 
-    sed -i 's/0.0.0.0:30006/0.0.0.0:30099/g' $wingbitsFolder/vector.toml;
+    sed -i 's/0.0.0.0:30006/0.0.0.0:30099/g' "$wingbitsFolder/vector.yaml";
 
 
     if ! $hypervisor network inspect adsbnet >/dev/null 2>&1; then 
@@ -71,7 +71,7 @@ function installWingbits() {
         --restart unless-stopped \
         --network=adsbnet \
         -e DEVICE_ID="$DEVICEID" \
-        -v $wingbitsFolder/vector.toml:/etc/vector/vector.toml:ro \
+        -v $wingbitsFolder/vector.yaml:/etc/vector/vector.yaml:ro \
         --label=com.centurylinklabs.watchtower.enable=true \
         timberio/vector:latest-alpine;
 }
