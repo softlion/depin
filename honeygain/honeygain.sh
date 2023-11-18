@@ -1,8 +1,28 @@
-#create folders
-depinFolder=/mnt/data/depin;
-honeygainFolder=$depinFolder/honeygain;
-folder=$honeygainFolder
-if [ ! -d $folder ]; then mkdir -p $folder; fi;
+
+function createFolders(){
+    echo "Creating folders"
+    depinFolder=$([ "$hypervisor" == "balena" ] && echo "/mnt/data/depin" || echo "/usr/src/depin")
+
+    folder=$depinFolder
+    if [ ! -d $folder ]; then 
+        echo "creating $folder"
+
+        if [ "$hypervisor" = "balena" ]; then
+            mkdir -p $folder;
+        else
+            sudo mkdir -p $folder;
+            sudo chown -R $(whoami) $folder
+            chmod -R u+rw /usr/src/depin
+        fi
+
+        echo "done creating"
+    fi;
+
+    honeygainFolder=$depinFolder/honeygain;
+    folder=$honeygainFolder
+    if [ ! -d $folder ]; then mkdir -p $folder; fi;
+    export honeygainFolder
+}
 
 
 function onBoardHoneygain(){
@@ -141,6 +161,7 @@ echo "(you can run this script multiple times without any issue)"
 
 hypervisor=$(checkBalenaDocker)
 
+createFolders
 onBoardHoneygain
 createSupervisorScript
 startSupervisor
