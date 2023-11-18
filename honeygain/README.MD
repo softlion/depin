@@ -21,7 +21,6 @@ bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/honeygain
 
 Other devices
 ```shell
-sudo mkdir /mnt/data
 sudo bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/honeygain/honeygain.sh')"
 ```
 
