@@ -10,7 +10,7 @@ Then execute one of the script below.
 It will ask you for:
 * ACCOUNT_EMAIL: your honeygain login
 * ACCOUNT_PASSWORD: your honeygain password 
-* DEVICE_NAME: by anything you want, it will be displayed on honeygain dashboard
+* DEVICE_NAME: can be anything you want, it will be displayed on the honeygain dashboard
 
 
 On nebra and sensecap:
