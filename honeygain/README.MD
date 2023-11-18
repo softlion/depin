@@ -6,44 +6,23 @@
 
 First, [create an account](https://r.honeygain.me/BENJAA3957).
 
-Then execute one of the script below in a ssh session on your device.  
-Replace:
+Then execute one of the script below.  
+It will ask you for:
 * ACCOUNT_EMAIL: your honeygain login
 * ACCOUNT_PASSWORD: your honeygain password 
-* DEVICE_NAME: by anything you want, it will be displayed on honeygain dashboard
+* DEVICE_NAME: can be anything you want, it will be displayed on the honeygain dashboard
 
 
 On nebra and sensecap:
 
 ```shell
-balena run --privileged --rm tonistiigi/binfmt --install amd64
-
-balena run -d \
-  --name honeygain \
-  --restart unless-stopped \
-  --label=com.centurylinklabs.watchtower.enable=true \
-  --platform=linux/amd64 \
-  honeygain/honeygain \
-  -tou-accept \
-  -email ACCOUNT_EMAIL \
-  -pass ACCOUNT_PASSWORD \
-  -device DEVICE_NAME
+bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/honeygain/honeygain.sh')"
 ```
 
-Other raspberry pi devices (Pisces P100, ...):
+Other devices
 ```shell
-sudo docker run --privileged --rm tonistiigi/binfmt --install amd64
-
-sudo docker run -d \
-  --name honeygain \
-  --restart unless-stopped \
-  --label=com.centurylinklabs.watchtower.enable=true \
-  --platform=linux/amd64 \
-  honeygain/honeygain \
-  -tou-accept \
-  -email ACCOUNT_EMAIL \
-  -pass ACCOUNT_PASSWORD \
-  -device DEVICE_NAME
+sudo mkdir /mnt/data
+sudo bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/honeygain/honeygain.sh')"
 ```
 
 # Tip
