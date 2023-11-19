@@ -40,3 +40,10 @@ Want to customize the settings ?
 - file: /mnt/data/depin/ultrafeeder/ultrafeeder-data.txt
 - restart the ultrafeeder container after changing those settings
 - check the logs `balena logs -f ultrafeeder` to see what adsb parameters it used
+
+## Auto gain
+```
+balena exec ultrafeeder /usr/local/bin/autogain1090
+#or
+docker exec ultrafeeder /usr/local/bin/autogain1090
+```
