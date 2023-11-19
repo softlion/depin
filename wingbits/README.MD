@@ -42,7 +42,7 @@ Want to customize the settings ?
 - check the logs
   - `balena logs -f ultrafeeder` to see what adsb parameters it used
   - or
-  - `docker logs -f ultrafeeder` to see what adsb parameters it used
+  - `sudo docker logs -f ultrafeeder` to see what adsb parameters it used
 
 ## Auto gain
 ```
@@ -50,5 +50,5 @@ balena exec ultrafeeder /usr/local/bin/autogain1090
 ```
 or
 ```
-docker exec ultrafeeder /usr/local/bin/autogain1090
+sudo docker exec ultrafeeder /usr/local/bin/autogain1090
 ```
