@@ -37,5 +37,5 @@ While installing, you will be asked to:
 
 Want to customize the settings ?  
 - [Full doc](https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder)
-- files:
-  - /mnt/data/depin/ultrafeeder/ultrafeeder-data.txt
+- file: /mnt/data/depin/ultrafeeder/ultrafeeder-data.txt
+- restart the ultrafeeder container after changing those settings
