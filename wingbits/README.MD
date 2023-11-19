@@ -39,3 +39,4 @@ Want to customize the settings ?
 - [Full doc](https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder)
 - file: /mnt/data/depin/ultrafeeder/ultrafeeder-data.txt
 - restart the ultrafeeder container after changing those settings
+- check the logs `balena logs -f ultrafeeder` to see what adsb parameters it used
