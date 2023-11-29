@@ -3,7 +3,7 @@ dockerContainer="streamr/broker-node:testnet-one"
 function installStreamr() {
 
   echo "Checking containers"
-  container="streamr1"
+  container="streamr"
   if $runHypervisor container inspect "$container" >/dev/null 2>&1; then $runHypervisor rm -f "$container"; fi;
 
 
@@ -167,7 +167,7 @@ set -o pipefail
 hypervisor=$(checkBalenaDocker)
 runHypervisor="$([[ "$hypervisor" == "docker" ]] && echo 'sudo docker' || echo 'balena')"
 echo "Using hypervisor $hypervisor and run $runHypervisor"
-createProjectFolder "streamr/1"
+createProjectFolder "streamr"
 installWatchTower
 installStreamr
 displayQr
