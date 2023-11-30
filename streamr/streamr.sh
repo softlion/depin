@@ -17,7 +17,7 @@ function installStreamr() {
   if [ "$startConfigWizard" = true ]; then
     echo "Starting configuration wizard"
     #  --user "$(id -u):$(id -g)" \
-    $runHypervisor run -it \
+    $runHypervisor run --rm -it \
       -v "$projectFolder":/home/streamr/.streamr \
       -v "$projectFolder":/root/.streamr \
       "$dockerContainer" \
