@@ -13,13 +13,13 @@ Each running node will have its own polygon wallet. You must fund each node with
 # News
 [Migrate from brubeck to testnet](https://docs.streamr.network/guides/become-an-operator/)
 * you have to rerun this script to update the docker container, auto update has been disabled by Streamr for now.
-* you must manually update the config file with the [instructions there](https://docs.streamr.network/guides/become-an-operator/). I may eventually update my script to do that automatically.
+* you must manually update the config.json file with the [instructions there](https://docs.streamr.network/guides/become-an-operator/) then restart the container (`docker restart streamr` / `balena restart streamr`). I may eventually update my script to do that automatically.
 
 # Script
 
 The script 1st run the config wizard.  
 Streamr will ask you a few questions, the answers are on the [streamr website](https://docs.streamr.network/node-runners/run-a-node/) and also below.  
-That creates a `config.json` file in `/usr/src/depin/streamr/1/.streamr/` or `/mnt/data/depin/streamr/1/.streamr/`
+That creates a `config.json` file in `/usr/src/depin/streamr/.streamr/` or `/mnt/data/depin/streamr/.streamr/`
 
 ```
 ? Do you want to generate a new Ethereum private key or import an existing one? Generate 
