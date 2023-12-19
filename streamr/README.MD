@@ -43,6 +43,8 @@ That creates a `config.json` file in `/usr/src/depin/streamr/.streamr/` or `/mnt
 The script then starts the node.  
 You can run it multiple times.
 
+This [alternate script](https://github.com/logicethos/streamrRUN/) can install a streamr node too.
+
 ## Installation
 
 On nebra and sensecap:
