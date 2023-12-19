@@ -12,6 +12,10 @@ Each running node will have its own polygon wallet. You must fund each node with
 Open and forward port 32200 from your router to your node.
 
 # News
+TestNet 2 now live !  
+Rerun the script to use it.  
+You will still need the [new config.json file format](https://github.com/logicethos/streamrRUN/blob/main/templates/config_operator) where NODE_PRIVATE_KEY is the etherum private key of the wallet for this node (must have a few MATICs) and your OPERATOR_CONTRACT_ADDRESS from the streamr dashboard.
+
 [Migrate from brubeck to testnet](https://docs.streamr.network/guides/become-an-operator/)
 * you have to rerun this script to update the docker container, auto update has been disabled by Streamr for now.
 * you must manually update the config.json file with the [instructions there](https://docs.streamr.network/guides/how-to-run-streamr-node/) then restart the container (`docker restart streamr` / `balena restart streamr`). I may eventually update my script to do that automatically.
