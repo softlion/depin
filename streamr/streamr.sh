@@ -1,4 +1,4 @@
-dockerContainer="streamr/broker-node:testnet-one"
+dockerContainer="streamr/broker-node:testnet-two"
 
 function installStreamr() {
 
