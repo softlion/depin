@@ -6,6 +6,8 @@ Connecting Web3 with real time data
 [Discord](https://discord.gg/gZAm8P7hK8)  
 [Become a node operator](https://docs.streamr.network/guides/become-an-operator/)
 
+➡️ You can also stake on [my Operator](https://streamr.network/hub/network/operators/0xb081961f8b4d5da919c52500f210f49edfe0c2af) if you don't want to become an operator yourself ⬅️
+
 You must delegate [100 DATA](https://streamr.network/stake-and-earn/) to your Operator to get rewards. Buy them from Uniswap, Binance or [Quickswap](https://quickswap.exchange/#/swap?outputCurrency=0x3a9A81d576d83FF21f26f325066054540720fC34&swapIndex=0&currency0=ETH).
 
 Each running node will have its own polygon wallet. You must fund each node with at least 0.1 MATIC (0.5 is better).  
