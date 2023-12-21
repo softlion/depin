@@ -33,10 +33,10 @@ function installStreamr() {
 
   #start node
   echo "Starting node"
+  #    -e LOG_LEVEL=trace \
   $runHypervisor run -d --name "$container" \
     --restart unless-stopped \
     -p 32200:32200 \
-    -e LOG_LEVEL=trace \
     -v "$projectFolder":/home/streamr/.streamr \
     -v "$projectFolder":/root/.streamr \
     --label=com.centurylinklabs.watchtower.enable=true \
