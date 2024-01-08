@@ -20,9 +20,7 @@ It will ask you for a NODE_PRIVATE_KEY (which is the etherum private key of a de
 
 # Script
 
-The script 1st run the config wizard.  
-Streamr will ask you a few questions, the answers are on the [streamr website](https://docs.streamr.network/node-runners/run-a-node/) and also below.  
-That creates a `config.json` file in `/usr/src/depin/streamr/.streamr/` or `/mnt/data/depin/streamr/.streamr/`
+The script 1st run the config wizard and create a `config.json` file in `/usr/src/depin/streamr/.streamr/` or `/mnt/data/depin/streamr/.streamr/`
 
 The script then starts the node.  
 You can run it multiple times.
