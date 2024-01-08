@@ -16,31 +16,13 @@ Open and forward port 32200 from your router to your node.
 # News
 TestNet 2 now live !  
 Rerun the script to use it.  
-You will still need the [new config.json file format](https://github.com/logicethos/streamrRUN/blob/main/templates/config_operator) where NODE_PRIVATE_KEY is the etherum private key of the wallet for this node (must have a few MATICs) and your OPERATOR_CONTRACT_ADDRESS from the streamr dashboard.
-
-[Migrate from brubeck to testnet](https://docs.streamr.network/guides/become-an-operator/)
-* you have to rerun this script to update the docker container, auto update has been disabled by Streamr for now.
-* you must manually update the config.json file with the [instructions there](https://docs.streamr.network/guides/how-to-run-streamr-node/) then restart the container (`docker restart streamr` / `balena restart streamr`). I may eventually update my script to do that automatically.
+It will ask you for a NODE_PRIVATE_KEY (which is the etherum private key of a dedicated wallet for this node, which must have a few MATICs) and your OPERATOR_CONTRACT_ADDRESS from the streamr dashboard.
 
 # Script
 
 The script 1st run the config wizard.  
 Streamr will ask you a few questions, the answers are on the [streamr website](https://docs.streamr.network/node-runners/run-a-node/) and also below.  
 That creates a `config.json` file in `/usr/src/depin/streamr/.streamr/` or `/mnt/data/depin/streamr/.streamr/`
-
-```
-? Do you want to generate a new Ethereum private key or import an existing one? Generate 
-  Note: If you are reinstalling the same node, choose IMPORT there and paste the private key of the dedicated polygon wallet.
-
-? Select the plugins to enable (none, press enter)
-
-? Do you want to participate in mining and staking? Yes
-? It is recommended to set a separate beneficiary address for security reasons. Would you like to set one? Yes
-? Please provide a beneficiary address (your etherum public address) 0x112233445566778899aabbccddeeff
-? Select a path to store the generated config in (press enter to accept the default)
-: Welcome to the Streamr Network
-: ...
-```
 
 The script then starts the node.  
 You can run it multiple times.
