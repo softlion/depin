@@ -2,6 +2,7 @@
 
 [Mysterium Website](https://mystnodes.com/)  
 [Mysterium Discord](https://discord.com/invite/n3vtSwc)  
+[Mysterium GitHub](https://github.com/mysteriumnetwork/node)
 
 ## Installation
 
