@@ -48,14 +48,11 @@ function createProjectFolder(){
     local projectRelativeFolder="$1"
     local mod="${2:-775}"
 
-    echo "Creating folders"
     depinFolder=$([ "$hypervisor" == "balena" ] && echo "/mnt/data/depin" || echo "/usr/src/depin")
-    projectFolder="$depinFolder/$projectRelativeFolder";
+    local projectFolder="$depinFolder/$projectRelativeFolder";
 
     folder="$projectFolder"
     if [ ! -d "$folder" ]; then 
-        echo "creating $folder"
-
         if [ "$hypervisor" = "balena" ]; then
             mkdir -p "$folder";
 
@@ -67,9 +64,9 @@ function createProjectFolder(){
             sudo chown $(whoami):sudo "$folder"
             sudo chmod "$mod" "$folder"
         fi
-
-        echo "done creating"
     fi;
+
+    echo "$projectFolder"
 }
 
 function prompt_with_default() {
@@ -164,8 +161,8 @@ set -o pipefail
 hypervisor=$(checkBalenaDocker)
 runHypervisor="$([[ "$hypervisor" == "docker" ]] && echo 'sudo docker' || echo 'balena')"
 echo "Using hypervisor $hypervisor and run $runHypervisor"
-createProjectFolder "streamr/config" "777"
-createProjectFolder "streamr"
+projectFolder=$(createProjectFolder "streamr")
+$(createProjectFolder "streamr/config" "777")
 installWatchTower
 installStreamr
 displayQr
