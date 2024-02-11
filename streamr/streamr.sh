@@ -164,8 +164,8 @@ set -o pipefail
 hypervisor=$(checkBalenaDocker)
 runHypervisor="$([[ "$hypervisor" == "docker" ]] && echo 'sudo docker' || echo 'balena')"
 echo "Using hypervisor $hypervisor and run $runHypervisor"
-createProjectFolder "streamr"
 createProjectFolder "streamr/config" "777"
+createProjectFolder "streamr"
 installWatchTower
 installStreamr
 displayQr
