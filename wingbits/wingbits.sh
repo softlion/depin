@@ -1,18 +1,6 @@
 #wingbits install on docker/balena
 #github.com/softlion/depin
 
-#create folders
-depinFolder=/mnt/data/depin;
-folder=$depinFolder
-if [ ! -d $folder ]; then mkdir -p $folder; fi;
-
-ultrafeederFolder=/mnt/data/depin/ultrafeeder;
-folder=$ultrafeederFolder
-if [ ! -d $folder ]; then mkdir -p $folder; fi;
-
-ultrafeederDataFile="$ultrafeederFolder/ultrafeeder-data.txt"
-
-
 function installWingbits() {
 
     #create folders
@@ -210,6 +198,32 @@ function removeContainer(){
     fi
 }
 
+function createProjectFolder(){
+    local projectRelativeFolder="$1"
+    local mod="${2:-775}"
+
+    depinFolder=$([ "$hypervisor" == "balena" ] && echo "/mnt/data/depin" || echo "/usr/src/depin")
+    local projectFolder="$depinFolder/$projectRelativeFolder";
+
+    folder="$projectFolder"
+    if [ ! -d "$folder" ]; then 
+        if [ "$hypervisor" = "balena" ]; then
+            mkdir -p "$folder";
+
+            chown $(whoami):sudo "$folder"
+            chmod "$mod" "$folder"
+        else
+            sudo mkdir -p "$folder";
+
+            sudo chown $(whoami):sudo "$folder"
+            sudo chmod "$mod" "$folder"
+        fi
+    fi;
+
+    echo "$projectFolder"
+}
+
+
 function prompt_with_default() {
   local prompt="$1"
   local default_value="$2"
@@ -287,8 +301,18 @@ echo ""
 echo "--------------------------------------"
 }
 
+echo "Installing containers to run a wingbit node on balena or docker"
+echo "(you can run this script multiple times without any issue)"
+
+set -e
+set -o pipefail
 
 hypervisor=$(checkBalenaDocker)
+runHypervisor="$([[ "$hypervisor" == "docker" ]] && echo 'sudo docker' || echo 'balena')"
+echo "Using hypervisor $hypervisor and run $runHypervisor"
+projectFolder=$(createProjectFolder "wingbits")
+ultrafeederFolder=$(createProjectFolder "ultrafeeder")
+ultrafeederDataFile="$ultrafeederFolder/ultrafeeder-data.txt"
 askUltrafeederStationData
 installWingbits
 displayQr
