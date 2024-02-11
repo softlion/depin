@@ -4,13 +4,10 @@
 function installWingbits() {
 
     #create folders
-    wingbitsFolder=$depinFolder/wingbits;
-    folder=$wingbitsFolder
-    if [ ! -d $folder ]; then mkdir -p $folder; fi;
-
+    wingbitsFolder="$projectFolder";
 
     if [ -z "$DEVICEID" ]; then  
-        if $hypervisor container inspect "vector" >/dev/null 2>&1; then
+        if $runHypervisor container inspect "vector" >/dev/null 2>&1; then
             DEVICEID=$($hypervisor exec "vector" sh -c 'echo $DEVICE_ID')
         fi
     
@@ -27,8 +24,8 @@ function installWingbits() {
     sed -i 's/0.0.0.0:30006/0.0.0.0:30099/g' "$wingbitsFolder/vector.yaml";
 
 
-    if ! $hypervisor network inspect adsbnet >/dev/null 2>&1; then 
-        $hypervisor network create adsbnet; 
+    if ! $runHypervisor network inspect adsbnet >/dev/null 2>&1; then 
+        $runHypervisor network create adsbnet; 
     fi;
     removeContainer ultrafeeder
     removeContainer vector
@@ -36,7 +33,7 @@ function installWingbits() {
 
     #start VMs
     #expose tar1090 webui on 8080 on the host
-    $hypervisor run -d --name ultrafeeder --hostname ultrafeeder \
+    $runHypervisor run -d --name ultrafeeder --hostname ultrafeeder \
         --restart unless-stopped \
         --network=adsbnet \
         --env-file $ultrafeederDataFile \
@@ -55,7 +52,7 @@ function installWingbits() {
 
     #receives data from ultrafeeder (see ultrafeederDataFile)
     #tranform that data and transmit it to wingbits
-    $hypervisor run -d --name vector \
+    $runHypervisor run -d --name vector \
         --restart unless-stopped \
         --network=adsbnet \
         -e DEVICE_ID="$DEVICEID" \
@@ -192,9 +189,9 @@ function askUltrafeederStationData() {
 function removeContainer(){
     local container_name=$1
 
-    if $hypervisor container inspect "$container_name" >/dev/null 2>&1; then
+    if $runHypervisor container inspect "$container_name" >/dev/null 2>&1; then
         echo "Removing container $containerName";
-        $hypervisor rm -f $container_name;
+        $runHypervisor rm -f $container_name;
     fi
 }
 
