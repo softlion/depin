@@ -143,7 +143,7 @@ function askUltrafeederStationData() {
     latitude=$(prompt_with_default "Latitude" "$latitude")
     longitude=$(prompt_with_default "Longitude" "$longitude")
     altitudeMeters=$(prompt_with_default "Altitude (in meters)" "$altitudeMeters")
-    altitudeFeet=$(echo "$altitudeMeters * 3.28084" | bc)
+    altitudeFeet=$((altitudeMeters * 328084 / 100000))
 
     echo "Select your timezone"
     echo "Enter the value of the TZ Identifier column of this table:"
