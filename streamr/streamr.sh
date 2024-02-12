@@ -162,7 +162,7 @@ hypervisor=$(checkBalenaDocker)
 runHypervisor="$([[ "$hypervisor" == "docker" ]] && echo 'sudo docker' || echo 'balena')"
 echo "Using hypervisor $hypervisor and run $runHypervisor"
 projectFolder=$(createProjectFolder "streamr")
-$(createProjectFolder "streamr/config" "777")
+o=$(createProjectFolder "streamr/config" "777")
 installWatchTower
 installStreamr
 displayQr
