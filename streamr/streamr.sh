@@ -50,9 +50,12 @@ function createProjectFolder(){
 
     depinFolder=$([ "$hypervisor" == "balena" ] && echo "/mnt/data/depin" || echo "/usr/src/depin")
     local projectFolder="$depinFolder/$projectRelativeFolder";
+#    echo "Installing in $projectFolder"
 
     folder="$projectFolder"
     if [ ! -d "$folder" ]; then 
+#        echo "creating $folder"
+    
         if [ "$hypervisor" = "balena" ]; then
             mkdir -p "$folder";
 
