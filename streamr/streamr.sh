@@ -27,7 +27,7 @@ function installStreamr() {
         chmod 664 "$projectFolder/config/default.json"
     else
         sudo chmod 664 "$projectFolder/config/default.json"
-        sudo chmod 775 "$folder/config"
+        sudo chmod 775 "$projectFolder/config"
     fi
   fi
 
