@@ -35,7 +35,7 @@ On nebra and sensecap:
 bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/streamr/streamr.sh')"
 ```
 
-Other raspberry pi devices with docker installed:
+Other raspberry pi devices with docker installed (pisces, crankk, ...):
 ```shell
 sudo bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/streamr/streamr.sh')"
 ```
