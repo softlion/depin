@@ -18,6 +18,12 @@ note: to receive rewards for ThingsIX, your gateway must be mapped by a ThingsIX
 
 ## Installation
 
+On `crankk` firmware:
+
+```shell
+bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/thingsix/thingsIX crankk.sh')"
+```
+
 On `nebra` and `sensecap` devices (ie: any device using `balena`):
 
 ```shell
