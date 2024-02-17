@@ -108,4 +108,4 @@ Multi chain Metamask account (BSC, Etherum, Arbitrum, Doge, Polygon, Avalanche, 
 
 0xe0018e74856e68A62d142Ab1C77b0F7B0ca3a2Ea
 
-![image](https://github.com/softlion/defli/assets/190756/9d4f1589-5f7f-46f4-ae0d-1190d2e22762)
+![Alt](https://repobeats.axiom.co/api/embed/f686d24040945f6ddde231208e2a4d5ae0f79466.svg "Repobeats analytics image")
