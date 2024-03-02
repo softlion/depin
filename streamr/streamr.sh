@@ -1,4 +1,4 @@
-dockerContainer="streamr/broker-node:testnet-three"
+dockerContainer="streamr/node:v100.0.0-rc.0"
 
 function installStreamr() {
 
