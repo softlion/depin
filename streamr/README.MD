@@ -14,9 +14,11 @@ Each running node will have its own polygon wallet. You must fund each node with
 Open and forward port 32200 from your router to your node.
 
 # News
-TestNet 3 now live !  
+RC is now live !  
 Rerun the script to use it.  
 It will ask you for a NODE_PRIVATE_KEY (which is the etherum private key of a dedicated wallet for this node, which must have a few MATICs) and your OPERATOR_CONTRACT_ADDRESS from the streamr dashboard.
+
+If you did not "migrate" your beta operator contract yet, you should do so: simply create a new operator and abandon the old one.
 
 # Script
 
