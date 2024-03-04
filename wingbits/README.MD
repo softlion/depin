@@ -40,10 +40,11 @@ Want to customize the settings ?
   - Sensecap/nebra: `nano /mnt/data/depin/ultrafeeder/ultrafeeder-data.txt`
   - Other: `sudo nano /usr/src/depin/ultrafeeder/ultrafeeder-data.txt`
 - restart the ultrafeeder container after changing those settings
+  - Sensecap/nebra: `balena restart ultrafeeder`
+  - Other: `sudo docker restart ultrafeeder`
 - check the logs
-  - `balena logs -f ultrafeeder` to see what adsb parameters it used
-  - or
-  - `sudo docker logs -f ultrafeeder` to see what adsb parameters it used
+  - Sensecap/nebra: `balena logs -f ultrafeeder` to see what adsb parameters it used
+  - Other: `sudo docker logs -f ultrafeeder` to see what adsb parameters it used
 
 ## Auto gain
 ```
