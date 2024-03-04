@@ -11,7 +11,7 @@ none, everything is ready
 
 ### On default raspberry pi os (Pisces P100)
 ```shell
-sudo apt install uuid-runtime
+sudo apt install -y uuid-runtime
 ```
 
 ## Installation
