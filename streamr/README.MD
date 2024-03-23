@@ -14,7 +14,7 @@ Each running node will have its own polygon wallet. You must fund each node with
 Open and forward port 32200 from your router to your node.
 
 # News
-RC is now live !  
+Streamr is now released !  
 Rerun the script to use it.  
 It will ask you for a NODE_PRIVATE_KEY (which is the etherum private key of a dedicated wallet for this node, which must have a few MATICs) and your OPERATOR_CONTRACT_ADDRESS from the streamr dashboard.
 
