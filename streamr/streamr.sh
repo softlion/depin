@@ -1,4 +1,4 @@
-dockerContainer="streamr/node:v100.0.0-rc.0"
+dockerContainer="streamr/node:latest"
 
 function installStreamr() {
 
