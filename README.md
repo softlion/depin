@@ -74,7 +74,7 @@ balena run -d --restart unless-stopped \
       containrrr/watchtower \
       --label-enable
 
-balena run --rm --volume "/var/run/balena.sock":/var/run/docker.sock  containrrr/watchtower --label-enable --run-once
+nohup balena run --rm --volume "/var/run/balena.sock":/var/run/docker.sock  containrrr/watchtower --label-enable --run-once
 ```
 
 Pisces P100, other devices:
@@ -86,7 +86,7 @@ sudo docker run -d --restart unless-stopped \
       containrrr/watchtower \
       --label-enable
 
-sudo docker run --rm --volume "/var/run/docker.sock":/var/run/docker.sock containrrr/watchtower --label-enable --run-once
+nohup sudo docker run --rm --volume "/var/run/docker.sock":/var/run/docker.sock containrrr/watchtower --label-enable --run-once
 ```
 
 ## Cleaning disk space
