@@ -15,7 +15,8 @@ It is built on my spare time.
 🚨 Beware that having a free hosted `mongodb` is not a proof of existence. And if it does not exist, then you know it's a ponzi.  
 🚨  
 
-[List of DePIN projects, with study of their profitability](https://wholovesburrito.com/project-list/)
+[List of DePIN projects, with study of their profitability](https://wholovesburrito.com/top-roi-project-rank/)
+
 
 # Scripts
 
