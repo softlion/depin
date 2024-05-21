@@ -27,7 +27,8 @@ Other devices
 sudo bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/wingbits/wingbits.sh')"
 ```
 
-After installation, you can browser to http://device-ip-address:8080/ to display the map.
+After installation  
+Browse to http://device-ip-address:8080/ to display the map.
 
 ## Information
 
