@@ -55,6 +55,8 @@ READSB_EXTRA_ARGS=--net-connector vector,30099,json_out
 #In db, or autogain. Note: autogain does not work nor setting a value, it is always set to 0dB when specified, which kills all aircrafts.
 #ADSB_SDR_GAIN=5
 
+READSB_ENABLE_BIASTEE=true
+
 #Optional
 #FEEDER_HEYWHATSTHAT_ID=
 #FEEDER_HEYWHATSTHAT_ALTS=
