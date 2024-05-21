@@ -6,14 +6,14 @@ function installWingbits() {
     #create folders
     wingbitsFolder="$projectFolder";
 
-    if [ -z "$DEVICEID" ]; then  
-        if $runHypervisor container inspect "vector" >/dev/null 2>&1; then
-            DEVICEID=$($hypervisor exec "vector" sh -c 'echo $DEVICE_ID')
-        fi
+    # if [ -z "$DEVICEID" ]; then  
+    #     if $runHypervisor container inspect "vector" >/dev/null 2>&1; then
+    #         DEVICEID=$($hypervisor exec "vector" sh -c 'echo $DEVICE_ID')
+    #     fi
     
-        echo "Enter your Wingbits Device ID (your-wingbits-id)"
-        DEVICEID=$(prompt_with_default "Winbits ID" "$DEVICEID")
-    fi
+    #     echo "Enter your Wingbits Device ID (your-wingbits-id)"
+    #     DEVICEID=$(prompt_with_default "Winbits ID" "$DEVICEID")
+    # fi
 
     response=$(curl -o "$wingbitsFolder/vector.yaml" --write-out "%{http_code}" 'https://gitlab.com/wingbits/config/-/raw/master/vector.yaml')
     if [ "$response" -ne 200 ]; then
@@ -52,10 +52,10 @@ function installWingbits() {
 
     #receives data from ultrafeeder (see ultrafeederDataFile)
     #tranform that data and transmit it to wingbits
+    # -e DEVICE_ID="$DEVICEID" \
     $runHypervisor run -d --name vector \
         --restart unless-stopped \
         --network=adsbnet \
-        -e DEVICE_ID="$DEVICEID" \
         -v $wingbitsFolder/vector.yaml:/etc/vector/vector.yaml:ro \
         --label=com.centurylinklabs.watchtower.enable=true \
         timberio/vector:latest-alpine;
