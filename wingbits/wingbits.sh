@@ -13,6 +13,8 @@ function installWingbits() {
     
         echo "Enter your Wingbits Device ID (your-wingbits-id)"
         DEVICEID=$(prompt_with_default "Winbits ID" "$DEVICEID")
+    else
+        echo "Using Device ID: $DEVICEID"
     fi
 
     response=$(curl -o "$wingbitsFolder/vector.yaml" --write-out "%{http_code}" 'https://gitlab.com/wingbits/config/-/raw/master/vector.yaml')
