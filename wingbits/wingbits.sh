@@ -17,7 +17,7 @@ function installWingbits() {
             if [[ $DEVICEID =~ ^[a-z]+-[a-z]+-[a-z]+$ ]]; then
                 break
             else
-                echo -e "DEVICE_ID is not properly formatted. Must be 3 words separated with dashes: 'abc-def-ghi'"
+                echo -e "The Device ID is not properly formatted. Must be 3 words separated with dashes. Ex: 'abc-def-ghi'"
             fi
         done
     else
