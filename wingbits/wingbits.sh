@@ -11,17 +11,19 @@ function installWingbits() {
             DEVICEID=$($hypervisor exec "vector" sh -c 'echo $DEVICE_ID')
         fi
 
+        echo "If this is a new antenna, register it first at https://wingbits.com/dashboard/antennas"
+        echo "and write down its ID (the ID has 3 words, it looks like 'macho-cider-storm')"
         while true; do
-            echo "Enter your Wingbits Device ID (format: your-wingbits-id)"
-            DEVICEID=$(prompt_with_default "Winbits ID" "$DEVICEID")
+            echo "Enter the Antenna ID registered in WingBits:"
+            DEVICEID=$(prompt_with_default "Wingbits Antenna ID" "$DEVICEID")
             if [[ $DEVICEID =~ ^[a-z]+-[a-z]+-[a-z]+$ ]]; then
                 break
             else
-                echo -e "The Device ID is not properly formatted. Must be 3 words separated with dashes. Ex: 'abc-def-ghi'"
+                echo -e "The Antenna ID is not properly formatted. Must be 3 words separated with dashes. Ex: 'abc-def-ghi'"
             fi
         done
     else
-        echo "Using Device ID: $DEVICEID"
+        echo "Using Wingbits Antenna ID: $DEVICEID"
     fi
 
     response=$(curl -o "$wingbitsFolder/vector.yaml" --write-out "%{http_code}" 'https://gitlab.com/wingbits/config/-/raw/master/vector.yaml')
