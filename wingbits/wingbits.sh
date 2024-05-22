@@ -14,7 +14,7 @@ function installWingbits() {
         while true; do
             echo "Enter your Wingbits Device ID (format: your-wingbits-id)"
             DEVICEID=$(prompt_with_default "Winbits ID" "$DEVICEID")
-            if [[ $device_id =~ ^[a-z]+-[a-z]+-[a-z]+$ ]]; then
+            if [[ $DEVICEID =~ ^[a-z]+-[a-z]+-[a-z]+$ ]]; then
                 break
             else
                 echo -e "DEVICE_ID is not properly formatted. Must be 3 words separated with dashes: 'abc-def-ghi'"
