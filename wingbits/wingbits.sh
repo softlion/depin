@@ -10,9 +10,16 @@ function installWingbits() {
         if $runHypervisor container inspect "vector" >/dev/null 2>&1; then
             DEVICEID=$($hypervisor exec "vector" sh -c 'echo $DEVICE_ID')
         fi
-    
-        echo "Enter your Wingbits Device ID (your-wingbits-id)"
-        DEVICEID=$(prompt_with_default "Winbits ID" "$DEVICEID")
+
+        while true; do
+            echo "Enter your Wingbits Device ID (format: your-wingbits-id)"
+            DEVICEID=$(prompt_with_default "Winbits ID" "$DEVICEID")
+            if [[ $device_id =~ ^[a-z]+-[a-z]+-[a-z]+$ ]]; then
+                break
+            else
+                echo -e "DEVICE_ID is not properly formatted. Must be 3 words separated with dashes: 'abc-def-ghi'"
+            fi
+        done
     else
         echo "Using Device ID: $DEVICEID"
     fi
