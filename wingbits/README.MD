@@ -3,6 +3,11 @@
 [Wingbits Website](https://wingbits.com/)  
 [Wingbits Discord](https://discord.com/invite/ZmpRW73qRH)  
 
+## News
+
+2024-05-24: update your wingbits installation in the next 15 days to continue receiving rewards.  
+            Simply rerun this script to update.
+
 ## Prerequisites
 
 ### On nebra and sensecap
@@ -29,6 +34,11 @@ sudo bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/wing
 
 After installation  
 Browse to http://device-ip-address:8080/ to display the map.
+
+## Update
+
+Rerun the installation script.  
+It should remember your last settings, press enter to accept them.
 
 ## Information
 

@@ -46,7 +46,7 @@ TAR1090_PAGETITLE=GiveANameToYourPlace
 #    mlat,feed.theairtraffic.com,31090,39004
 
 #Wingbits
-READSB_EXTRA_ARGS=--net-connector vector,30099,json_out
+READSB_EXTRA_ARGS=--net-connector vector,30006,json_out
 
 
 # --------------------------------------------------

@@ -32,9 +32,6 @@ function installWingbits() {
         exit 1
     fi
 
-    sed -i 's/0.0.0.0:30006/0.0.0.0:30099/g' "$wingbitsFolder/vector.yaml";
-
-
     if ! $runHypervisor network inspect adsbnet >/dev/null 2>&1; then 
         $runHypervisor network create adsbnet; 
     fi;
