@@ -33,7 +33,11 @@ sudo bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/wing
 ```
 
 After installation  
-Browse to http://device-ip-address:8080/ to display the map.
+Browse to:
+- `http://device-ip-address:8080/` to display the live map
+- `http://device-ip-address:8080/?heatmap` to display the heat map
+- `http://device-ip-address:8080/graphs1090` to display the stats page
+
 
 ## Update
 
