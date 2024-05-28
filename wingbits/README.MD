@@ -18,16 +18,17 @@ none, everything is ready
 ```shell
 sudo apt install -y uuid-runtime
 ```
+Also make sure you have the latest version of docker. On Pisces P100 you will have to uninstall docker first, as it was installed using an unofficial installer. Use the universal uninstaller on the official docker website.
 
 ## Installation
 
-On nebra and sensecap:
+On nebra and sensecap (balena OS):
 
 ```shell
 bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/wingbits/wingbits.sh')"
 ```
 
-Other devices
+Other devices (linux):
 ```shell
 sudo bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/wingbits/wingbits.sh')"
 ```
