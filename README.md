@@ -66,7 +66,7 @@ balena run -d --restart unless-stopped \
       containrrr/watchtower \
       --label-enable
 
-nohup balena run --rm --volume "/var/run/balena.sock":/var/run/docker.sock  containrrr/watchtower --label-enable --run-once
+balena run --rm --volume "/var/run/balena.sock":/var/run/docker.sock  containrrr/watchtower --label-enable --run-once
 ```
 
 Pisces P100, other devices:
