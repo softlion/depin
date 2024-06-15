@@ -14,7 +14,7 @@ Publishers pay for publishing data. Node operators gets a cut of the data passin
 ➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️  
 
 Conditions to become operator
-* You must delegate [100 DATA](https://streamr.network/stake-and-earn/) to your Operator to get rewards. Buy them from Uniswap, Binance or [Quickswap](https://quickswap.exchange/#/swap?outputCurrency=0x3a9A81d576d83FF21f26f325066054540720fC34&swapIndex=0&currency0=ETH).
+* You must stake [100 DATA](https://streamr.network/stake-and-earn/) on your Operator to get rewards. Buy them from Uniswap, Binance or [Quickswap](https://quickswap.exchange/#/swap?outputCurrency=0x3a9A81d576d83FF21f26f325066054540720fC34&swapIndex=0&currency0=ETH). Stake on the operator's page.
 * Each running node will have its own polygon wallet. 
 * You must fund each node with at least 0.1 MATIC (0.5 is better).  
 * Open and [forward port](https://portforward.com/) 32200 from your router to your node.
