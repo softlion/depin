@@ -19,6 +19,11 @@ Conditions to become operator
 * You must fund each node with at least 0.1 MATIC (0.5 is better).  
 * Open and [forward port](https://portforward.com/) 32200 from your router to your node.
 
+Hardware requirements:
+* A linux device (raspberry pi, helium miner, ...)
+* A stable internet connection 24/24. Do not try if your internet connection is not stable as your DATA tokens will be slashed.
+
+
 # News
 Streamr is now released !  
 Rerun the script to use it.  
