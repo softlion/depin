@@ -11,11 +11,11 @@ Connecting Web3 with real time data
 ➡️ You can also stake on [my Operator](https://streamr.network/hub/network/operators/0x561c011c6bbcd686d43efbc6449e8a69c801002e) if you don't want to become an operator yourself ⬅️  
 ➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️  
 
-
-You must delegate [100 DATA](https://streamr.network/stake-and-earn/) to your Operator to get rewards. Buy them from Uniswap, Binance or [Quickswap](https://quickswap.exchange/#/swap?outputCurrency=0x3a9A81d576d83FF21f26f325066054540720fC34&swapIndex=0&currency0=ETH).
-
-Each running node will have its own polygon wallet. You must fund each node with at least 0.1 MATIC (0.5 is better).  
-Open and forward port 32200 from your router to your node.
+Conditions to become operator
+* You must delegate [100 DATA](https://streamr.network/stake-and-earn/) to your Operator to get rewards. Buy them from Uniswap, Binance or [Quickswap](https://quickswap.exchange/#/swap?outputCurrency=0x3a9A81d576d83FF21f26f325066054540720fC34&swapIndex=0&currency0=ETH).
+* Each running node will have its own polygon wallet. 
+* You must fund each node with at least 0.1 MATIC (0.5 is better).  
+* Open and forward port 32200 from your router to your node.
 
 # News
 Streamr is now released !  
