@@ -2,9 +2,10 @@
 
 Connecting Web3 with real time data  
 
-[Website](https://streamr.network/)  
-[Discord](https://discord.gg/gZAm8P7hK8)  
-[Become a node operator](https://docs.streamr.network/guides/become-an-operator/)
+[Official Website](https://streamr.network/)  
+[Official Discord](https://discord.gg/gZAm8P7hK8)  
+[Official doc: become a node operator](https://docs.streamr.network/guides/become-an-operator/)
+[Official doc: How to run a streamr node](https://docs.streamr.network/guides/how-to-run-streamr-node/)
 
 ➡️ You can also stake on [my Operator](https://streamr.network/hub/network/operators/0x561c011c6bbcd686d43efbc6449e8a69c801002e) if you don't want to become an operator yourself ⬅️
 
@@ -22,12 +23,10 @@ If you did not "migrate" your beta operator contract yet, you should do so: simp
 
 # Script
 
-The script 1st run the config wizard and create a `config.json` file in `/usr/src/depin/streamr/.streamr/` or `/mnt/data/depin/streamr/.streamr/`
+The script starts the config wizard,  and creates a `config.json` file in `/usr/src/depin/streamr/.streamr/` or `/mnt/data/depin/streamr/.streamr/`  
+Then it starts the node.
 
-The script then starts the node.  
-You can run it multiple times.
-
-This [alternate script](https://github.com/logicethos/streamrRUN/) can install a streamr node too.
+You can run this script multiple times, it will keep your previous settings.
 
 ## Installation
 
