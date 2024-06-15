@@ -4,7 +4,7 @@ Connecting Web3 with real time data
 
 [Official Website](https://streamr.network/)  
 [Official Discord](https://discord.gg/gZAm8P7hK8)  
-[Official doc: become a node operator](https://docs.streamr.network/guides/become-an-operator/)
+[Official doc: become a node operator](https://docs.streamr.network/guides/become-an-operator/)  
 [Official doc: How to run a streamr node](https://docs.streamr.network/guides/how-to-run-streamr-node/)
 
 ➡️ You can also stake on [my Operator](https://streamr.network/hub/network/operators/0x561c011c6bbcd686d43efbc6449e8a69c801002e) if you don't want to become an operator yourself ⬅️
