@@ -7,7 +7,7 @@ function installWingbits() {
     wingbitsFolder="$projectFolder";
 
     if [ -z "$DEVICEID" ]; then  
-        if $runHypervisor container inspect "vector" >/dev/null 2>&1; then
+        if [ "$($runHypervisor inspect -f '{{.State.Running}}' vector 2>/dev/null)" = "true" ]; then
             DEVICEID=$($hypervisor exec "vector" sh -c 'echo $DEVICE_ID')
         fi
 
