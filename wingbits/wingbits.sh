@@ -20,6 +20,7 @@ function installWingbits() {
                 break
             else
                 echo -e "The Antenna ID is not properly formatted. Must be 3 words separated with dashes. Ex: 'abc-def-ghi'"
+                DEVICEID=""
             fi
         done
     else
@@ -99,9 +100,9 @@ else
   echo "Autoupdate succeeded (no update)"
 fi
 '
-    echo $vectorStatupOverrideScript | tee "$wingbitsFolder/vector_startup_override.sh"
+    echo $vectorStatupOverrideScript > "$wingbitsFolder/vector_startup_override.sh"
     chmod +x "$wingbitsFolder/vector_startup_override.sh"
-    echo $autoupdateScript | tee "$wingbitsFolder/autoupdate.sh"
+    echo $autoupdateScript > "$wingbitsFolder/autoupdate.sh"
     chmod +x "$wingbitsFolder/autoupdate.sh"
 
 
