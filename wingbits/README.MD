@@ -18,7 +18,7 @@ none, everything is ready
 ```shell
 sudo apt install -y uuid-runtime
 ```
-Also make sure you have the latest version of docker. On Pisces P100 you will have to uninstall docker first, as it was installed using an unofficial installer. Use the universal uninstaller on the official docker website.
+Also make sure you have the latest version of docker. On Pisces P100 you will have to uninstall docker first, as it was installed using an unofficial installer. Use the universal uninstaller on the official docker website. On my side, I wiped the OS and installed the latest rpi distribution to get the latest security changes. But that requires more advanced knowledge.
 
 ## Installation
 
