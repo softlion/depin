@@ -86,8 +86,8 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-old_hash=$(md5sum /etc/vector/vector.yaml | awk "{print $1}")
-new_hash=$(md5sum /etc/vector/vector_update.yaml | awk "{print $1}")
+old_hash=$(md5sum /etc/vector/vector.yaml | awk '"'"'{print $1}'"'"')
+new_hash=$(md5sum /etc/vector/vector_update.yaml | awk '"'"'{print $1}'"'"')
 if [ "$old_hash" != "$new_hash" ]; then
   mv -f /etc/vector/vector_update.yaml /etc/vector/vector.yaml
   #notify vector to reload its config (we also could instead use --watch-config)
