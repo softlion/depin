@@ -40,6 +40,8 @@ function installWingbits() {
 
 
     #start VMs
+
+    #Ultrafeeder
     #expose tar1090 webui on 8080 on the host
     $runHypervisor run -d --name ultrafeeder --hostname ultrafeeder \
         --restart unless-stopped \
@@ -58,14 +60,52 @@ function installWingbits() {
         ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder;
 
 
+    #Vector
     #receives data from ultrafeeder (see ultrafeederDataFile)
     #tranform that data and transmit it to wingbits
+    autoupdateLocalPath="/etc/vector/autoupdate.sh"
+
+    vectorStatupOverrideScript='
+(crontab -l 2>/dev/null; echo "0 */12 * * * '"$autoupdateLocalPath"'") | crontab -
+exec /usr/local/bin/vector "$@"
+'
+
+    autoupdateScript='
+echo "Autoupdate starting"
+wget -O /etc/vector/vector_update.yaml 'https://gitlab.com/wingbits/config/-/raw/master/vector.yaml'
+if [ $? -ne 0 ]; then
+  echo "Autoupdate Error: failed to download vector.yaml file"
+  exit 1
+fi
+vector validate /etc/vector/vector_update.yaml
+if [ $? -ne 0 ]; then
+  echo "Autoupdate Error: vector.yaml file content is invalid"
+  exit 1
+fi
+
+old_hash=$(md5sum /etc/vector/vector.yaml | awk ''{print $1}'')
+new_hash=$(md5sum /etc/vector/vector_update.yaml | awk ''{print $1}'')
+if [ "$old_hash" != "$new_hash" ]; then
+  mv -f /etc/vector/vector_update.yaml /etc/vector/vector.yaml
+  #notify vector to reload its config (we also could instead use --watch-config)
+  kill -SIGHUP 1
+  echo "Autoupdate succeeded (config updated)"
+else
+  echo "Autoupdate succeeded (no update)"
+fi
+'
+    echo $vectorStatupOverrideScript | tee "$wingbitsFolder/vector_startup_override.sh"
+    echo $autoupdateScript | tee "$wingbitsFolder/autoupdate.sh"
+
     $runHypervisor run -d --name vector \
         --restart unless-stopped \
         --network=adsbnet \
-        -v $wingbitsFolder/vector.yaml:/etc/vector/vector.yaml:ro \
+        -v $wingbitsFolder/vector.yaml:/etc/vector/vector.yaml:rw \
+        -v $wingbitsFolder/vector_startup_override.sh:/etc/vector/vector_startup_override.sh:ro \
+        -v $wingbitsFolder/autoupdate.sh:$autoupdateLocalPath:ro \
         -e DEVICE_ID="$DEVICEID" \
         --label=com.centurylinklabs.watchtower.enable=true \
+        --entrypoint /etc/vector/vector_startup_override.sh \
         timberio/vector:latest-alpine;
 }
 
