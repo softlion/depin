@@ -69,7 +69,7 @@ function installWingbits() {
     vectorStatupOverrideScript='#!/bin/sh
 
 echo "0 */12 * * * '"$autoupdateLocalPath"'" > /etc/vector/autoupdate.cron
-crontab /etc/vector/autoupdate.cron
+#crontab /etc/vector/autoupdate.cron
 exec /usr/local/bin/vector "$@"
 '
 
