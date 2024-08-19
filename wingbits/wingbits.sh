@@ -66,11 +66,16 @@ function installWingbits() {
     autoupdateLocalPath="/etc/vector/autoupdate.sh"
 
     vectorStatupOverrideScript='
-(crontab -l 2>/dev/null; echo "0 */12 * * * '"$autoupdateLocalPath"'") | crontab -
+#!/bin/sh
+
+echo "0 */12 * * * '"$autoupdateLocalPath"'" > /etc/vector/autoupdate.cron
+crontab /etc/vector/autoupdate.cron
 exec /usr/local/bin/vector "$@"
 '
 
     autoupdateScript='
+#!/bin/sh
+
 echo "Autoupdate starting"
 wget -O /etc/vector/vector_update.yaml 'https://gitlab.com/wingbits/config/-/raw/master/vector.yaml'
 if [ $? -ne 0 ]; then
