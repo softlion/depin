@@ -95,7 +95,10 @@ else
 fi
 '
     echo $vectorStatupOverrideScript | tee "$wingbitsFolder/vector_startup_override.sh"
+    chmod +x "$wingbitsFolder/vector_startup_override.sh"
     echo $autoupdateScript | tee "$wingbitsFolder/autoupdate.sh"
+    chmod +x "$wingbitsFolder/autoupdate.sh"
+
 
     $runHypervisor run -d --name vector \
         --restart unless-stopped \
