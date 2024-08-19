@@ -100,9 +100,9 @@ else
   echo "Autoupdate succeeded (no update)"
 fi
 '
-    echo $vectorStatupOverrideScript > "$wingbitsFolder/vector_startup_override.sh"
+    echo "$vectorStatupOverrideScript" > "$wingbitsFolder/vector_startup_override.sh"
     chmod +x "$wingbitsFolder/vector_startup_override.sh"
-    echo $autoupdateScript > "$wingbitsFolder/autoupdate.sh"
+    echo "$autoupdateScript" > "$wingbitsFolder/autoupdate.sh"
     chmod +x "$wingbitsFolder/autoupdate.sh"
 
 
