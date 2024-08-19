@@ -5,7 +5,7 @@
 
 ## News
 
-2024-05-24: update your wingbits installation in the next 15 days to continue receiving rewards.  
+2024-08-19: update your wingbits installation in the next 15 days to continue receiving rewards.  
             Simply rerun this script to update.
 
 ## Prerequisites
