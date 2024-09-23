@@ -14,7 +14,7 @@ Then execute one of the script below.
 It will ask you for:
 * ACCOUNT_EMAIL: your honeygain login
 * ACCOUNT_PASSWORD: your honeygain password 
-* DEVICE_NAME: can be anything you want, it will be displayed on the honeygain dashboard
+* DEVICE_NAME: can be anything you want, it will be displayed on the honeygain dashboard. MUST BE UNIQUE ACROSS DEVICES.
 
 
 On balena based devices (nebra and sensecap):
