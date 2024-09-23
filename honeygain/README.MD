@@ -30,6 +30,8 @@ sudo bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/hone
 
 # Tips
 
+* Does not work from a datacenter IP. Your IP must be residential.
+
 * Star the project ! Tap on the star on the top right of this screen.
 
 * Donate something !
