@@ -4,7 +4,7 @@
 
 ## Token
 
-HNY https://coinmarketcap.com/fr/currencies/honey-token/
+[HNY](https://coinmarketcap.com/currencies/honey-token/)
 
 ## Installation
 
