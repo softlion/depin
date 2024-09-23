@@ -2,6 +2,10 @@
 
 [Honeygain Website](https://r.honeygain.me/BENJAA3957)  
 
+## Token
+
+HNY https://coinmarketcap.com/fr/currencies/honey-token/
+
 ## Installation
 
 First, [create an account](https://r.honeygain.me/BENJAA3957).
