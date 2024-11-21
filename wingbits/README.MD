@@ -14,6 +14,8 @@ It is useless for everyone else.
 
 # CAN'T BE USED ANYMORE TO BUILD A NEW WINGBIT STATION
 
+You can buy [official Wingbits stations there](https://crypship.io/en/product/wingbits-wb300/) for example.
+
 ## Prerequisites
 
 ### On nebra and sensecap
