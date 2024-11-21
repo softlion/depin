@@ -14,7 +14,7 @@ It is useless for everyone else.
 
 # CAN'T BE USED ANYMORE TO BUILD A NEW WINGBIT STATION
 
-You can buy [official Wingbits stations there](https://crypship.io/en/product/wingbits-wb300/) for example.
+You can buy [official Wingbits stations there]( https://docs.wingbits.com/project/wingbits-approved-distributors) for example.
 
 ## Prerequisites
 
@@ -81,3 +81,8 @@ or
 ```
 sudo docker exec ultrafeeder /usr/local/bin/autogain1090
 ```
+
+# Other links
+
+- [official Wingbits stations there](https://docs.wingbits.com/project/wingbits-approved-distributors)
+- [Not sure if this one is reliable](https://crypship.io/en/product/wingbits-wb300/) but it has good prices
