@@ -85,4 +85,4 @@ sudo docker exec ultrafeeder /usr/local/bin/autogain1090
 # Other links
 
 - [official Wingbits stations there](https://docs.wingbits.com/project/wingbits-approved-distributors)
-- [Not sure if this one is reliable](https://crypship.io/en/product/wingbits-wb300/) but it has good prices
+- [This one has good prices in EU](https://crypship.io/en/product/wingbits-wb300/)
