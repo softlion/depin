@@ -5,8 +5,14 @@
 
 ## News
 
-2024-08-19: update your wingbits installation in the next 15 days to continue receiving rewards.  
-            Simply rerun this script to update (now includes the autoupdater).
+2024-11-21: 
+Do-It-Yourself Wingbit stations are not more allowed, and all GeoSigner devices for existing stations have been assigned.  
+You can't build a Wingbit station with a custom hardware anymore.  
+
+That means this script is only useful to update your existing installation.  
+It is useless for everyone else.
+
+# CAN'T BE USED ANYMORE TO BUILD A NEW WINGBIT STATION
 
 ## Prerequisites
 
