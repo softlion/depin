@@ -1,0 +1,87 @@
+name: Build Wingbits Docker Images
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get Wingbits versions
+        id: get-versions
+        run: |
+          ARM64_VERSION_URL="https://install.wingbits.com/linux-arm64.json"
+          AMD64_VERSION_URL="https://install.wingbits.com/linux-amd64.json"
+
+          ARM64_VERSION=$(curl -s "$ARM64_VERSION_URL" | grep -o '"Version": "[^"]*"' | cut -d'"' -f4)
+          AMD64_VERSION=$(curl -s "$AMD64_VERSION_URL" | grep -o '"Version": "[^"]*"' | cut -d'"' -f4)
+
+          echo "arm64_version=$ARM64_VERSION" >> $GITHUB_ENV
+          echo "amd64_version=$AMD64_VERSION" >> $GITHUB_ENV
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Check if Docker images exist
+        id: check-images
+        run: |
+          ARM64_IMAGE=vapolia/wingbits:$arm64_version-arm64
+          AMD64_IMAGE=vapolia/wingbits:$amd64_version-amd64
+
+          ARM64_EXISTS=false
+          AMD64_EXISTS=false
+
+          if docker manifest inspect "$ARM64_IMAGE" > /dev/null 2>&1; then
+            ARM64_EXISTS=true
+          fi
+
+          if docker manifest inspect "$AMD64_IMAGE" > /dev/null 2>&1; then
+            AMD64_EXISTS=true
+          fi
+
+          echo "arm64_exists=$ARM64_EXISTS" >> $GITHUB_ENV
+          echo "amd64_exists=$AMD64_EXISTS" >> $GITHUB_ENV
+
+      - name: Build and push Docker images for arm64
+        if: env.arm64_exists == 'false'
+        run: |
+          docker build --build-arg GOARCH=arm64 -t vapolia/wingbits:$arm64_version-arm64 -f wingbits/dockerfile .
+          docker tag vapolia/wingbits:$arm64_version-arm64 vapolia/wingbits:latest-arm64
+          docker push vapolia/wingbits:$arm64_version-arm64
+          docker push vapolia/wingbits:latest-arm64
+
+      - name: Build and push Docker images for amd64
+        if: env.amd64_exists == 'false'
+        run: |
+          docker build --build-arg GOARCH=amd64 -t vapolia/wingbits:$amd64_version-amd64 -f wingbits/dockerfile .
+          docker tag vapolia/wingbits:$amd64_version-amd64 vapolia/wingbits:latest-amd64
+          docker push vapolia/wingbits:$amd64_version-amd64
+          docker push vapolia/wingbits:latest-amd64
+
+      - name: Create and push multi-architecture manifests
+        if: env.arm64_exists == 'false' || env.amd64_exists == 'false'
+        run: |
+          docker manifest create vapolia/wingbits:$arm64_version \
+            --amend vapolia/wingbits:$arm64_version-arm64 \
+            --amend vapolia/wingbits:$amd64_version-amd64
+          docker manifest push vapolia/wingbits:$arm64_version
+
+          docker manifest create vapolia/wingbits:latest \
+            --amend vapolia/wingbits:latest-arm64 \
+            --amend vapolia/wingbits:latest-amd64
+          docker manifest push vapolia/wingbits:latest
+
+      - name: Notify completion
+        run: |
+          if [ "$arm64_exists" == "true" ] && [ "$amd64_exists" == "true" ]; then
+            echo "Docker images already exist. Nothing was done."
+          else
+            echo "Docker images built and pushed successfully."
+          fi

@@ -1,0 +1,49 @@
+# Dockerfile
+# To run this container :
+# docker run --rm  -v /mnt/c/Users/benja_lfpsq1j/wingbits_device:/etc/wingbits/device --device=/dev/ttyACM0:/dev/ttyACM0 -p 30006:30006 vapolia/wingbits:latest-amd64
+#
+# TODO: check ownership of tty (dialout or tty): 
+# ls -l /dev/ttyACM0
+# sudo usermod -aG dialout $USER
+#
+# Test device access:
+# docker run --rm --device=/dev/ttyACM0:/dev/ttyACM0 debian:bookworm-slim cat /dev/ttyACM0
+
+
+
+FROM debian:bookworm-slim
+
+# Install necessary utilities
+RUN apt-get update && apt-get install -y \
+    curl \
+    gzip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set up environment variables
+ARG DEVICE
+ENV DEVICE=$DEVICE
+ARG GOOS=linux
+ARG GOARCH=arm64
+
+RUN mkdir -p /etc/wingbits
+
+# Fetch and store the version information
+RUN VERSION_URL="https://install.wingbits.com/$GOOS-$GOARCH.json" && \
+    curl -s "$VERSION_URL" | grep -o '"Version": "[^"]*"' | cut -d'"' -f4 > /etc/wingbits/version
+
+# Fetch and install the Wingbits executable
+RUN VERSION=$(cat /etc/wingbits/version) && \
+    EXECUTABLE_URL="https://install.wingbits.com/$VERSION/$GOOS-$GOARCH.gz" && \
+    curl -s "$EXECUTABLE_URL" -o /usr/local/bin/wingbits.gz && \
+    gunzip /usr/local/bin/wingbits.gz && \
+    chmod +x /usr/local/bin/wingbits && \
+    rm -f /usr/local/bin/wingbits.gz
+
+# Create necessary configuration files
+RUN echo "$DEVICE" > /etc/wingbits/device
+
+# Expose port 30006
+EXPOSE 30006
+
+# Set the executable as the default command
+CMD ["/usr/local/bin/wingbits", "feeder", "start"]
