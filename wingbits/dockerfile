@@ -8,15 +8,24 @@
 #
 # Test device access:
 # docker run --rm --device=/dev/ttyACM0:/dev/ttyACM0 debian:bookworm-slim cat /dev/ttyACM0
+#
+# Test presence of geosigner
+# wingbits status
+# wingbits feeder status
+# the connected message will change when you have a geosigner installed, it will be "over TLS/TCP" instead of "over TCP"
 
 
 
 FROM debian:bookworm-slim
 
 # Install necessary utilities
+# python is required by the wingbits binary, for initial onboarding of the geosigner.
 RUN apt-get update && apt-get install -y \
     curl \
     gzip \
+    python3 \
+    python3-pip \
+    python3-venv \
     && rm -rf /var/lib/apt/lists/*
 
 # Set up environment variables
