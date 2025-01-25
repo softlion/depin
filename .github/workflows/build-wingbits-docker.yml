@@ -8,7 +8,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      GOOSARCH_LIST: "linux-amd64 linux-arm64 linux-386 linux-arm darwin-arm64"
+      #linux-386 linux-arm darwin-arm64
+      GOOSARCH_LIST: "linux-amd64 linux-arm64"
 
     steps:
       - name: Checkout repository
@@ -44,38 +45,10 @@ jobs:
           echo "IMAGEEXISTS=${IMAGEEXISTS[*]}" >> $GITHUB_ENV
           echo "ALLIMAGEEXISTS=$ALLIMAGEEXISTS" >> $GITHUB_ENV
 
-      - name: Build and push Docker images
+      - name: Build and push Docker image
         if: env.ALLIMAGEEXISTS == 'false'
         run: |
-          index=0
-          read -r -a VERSIONS_ARRAY <<< "$VERSIONS"
-          read -r -a IMAGEEXISTS_ARRAY <<< "$IMAGEEXISTS"
-          
-          for GOOSARCH in $GOOSARCH_LIST; do
 
-            VERSION="${VERSIONS_ARRAY[$index]}"
-            IMAGEEXIST="${IMAGEEXISTS_ARRAY[$index]}"
-
-            if [ "$IMAGEEXIST" = "false" ]; then
-                IMAGE="vapolia/wingbits:${VERSION}-${GOOSARCH}"
-
-                echo "Building ${IMAGE}"
-                GOOSARCH_DOCKER=$(echo $GOOSARCH | sed 's/-/\//')
-                docker build --build-arg GOOSARCH=${GOOSARCH} --platform $GOOSARCH_DOCKER -t ${IMAGE} -f wingbits/dockerfile .
-                docker push ${IMAGE}
-
-                docker tag ${IMAGE} vapolia/wingbits:latest-${GOOSARCH}
-                docker push vapolia/wingbits:latest-${GOOSARCH}
-            fi
-
-            index=$((index + 1))
-          done
-
-      - name: Create and push multi-architecture manifests
-        if: env.ALLIMAGEEXISTS == 'false'
-        run: |
-          # Create a manifest for latest tag
-          MANIFEST_LATEST="vapolia/wingbits:latest"
-          docker manifest create ${MANIFEST_LATEST} \
-            $(for GOOSARCH in $GOOSARCH_LIST; do echo "vapolia/wingbits:latest-${GOOSARCH}"; done)
-          docker manifest push ${MANIFEST_LATEST}
+          VERSION_TAG=$(echo "$VERSIONS" | sed -e 's/ /-/g')
+          DOCKER_OS_ARCH_LIST=$(echo $GOOSARCH_LIST | sed -e 's/-/\//g' -e 's/ /,/g')
+          docker buildx build --platform $DOCKER_OS_ARCH_LIST -t vapolia/wingbits:latest -t vapolia/wingbits:$VERSION_TAG --push wingbits

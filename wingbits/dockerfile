@@ -16,32 +16,34 @@
 
 
 
-FROM debian:bookworm-slim
+FROM python:3-slim-bookworm
+
+#Automatic args
+ARG TARGETPLATFORM
+ARG TARGETOS
+ARG TARGETARCH
+
+RUN echo "Building for platform: $TARGETPLATFORM ($TARGETOS-$TARGETARCH)"
 
 # Install necessary utilities
 # python is required by the wingbits binary, for initial onboarding of the geosigner.
 RUN apt-get update && apt-get install -y \
     curl \
     gzip \
-    python3 \
-    python3-pip \
-    python3-venv \
+#    python3 \
+#    python3-pip \
+#    python3-venv \
     && rm -rf /var/lib/apt/lists/*
-
-# Set up environment variables
-# ARG DEVICE
-# ENV DEVICE=$DEVICE
-ARG GOOSARCH=linux-arm64
 
 RUN mkdir -p /etc/wingbits
 
 # Fetch and store the version information
-RUN VERSION_URL="https://install.wingbits.com/$GOOSARCH.json" && \
+RUN VERSION_URL="https://install.wingbits.com/$TARGETOS-$TARGETARCH.json" && \
     curl -s "$VERSION_URL" | grep -o '"Version": "[^"]*"' | cut -d'"' -f4 > /etc/wingbits/version
 
 # Fetch and install the Wingbits executable
 RUN VERSION=$(cat /etc/wingbits/version) && \
-    EXECUTABLE_URL="https://install.wingbits.com/$VERSION/$GOOSARCH.gz" && \
+    EXECUTABLE_URL="https://install.wingbits.com/$VERSION/$TARGETOS-$TARGETARCH.gz" && \
     curl -s "$EXECUTABLE_URL" -o /usr/local/bin/wingbits.gz && \
     gunzip /usr/local/bin/wingbits.gz && \
     chmod +x /usr/local/bin/wingbits && \
