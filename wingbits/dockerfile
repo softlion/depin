@@ -29,27 +29,27 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Set up environment variables
-ARG DEVICE
-ENV DEVICE=$DEVICE
-ARG GOOS=linux
-ARG GOARCH=arm64
+# ARG DEVICE
+# ENV DEVICE=$DEVICE
+ARG GOOSARCH=linux-arm64
 
 RUN mkdir -p /etc/wingbits
 
 # Fetch and store the version information
-RUN VERSION_URL="https://install.wingbits.com/$GOOS-$GOARCH.json" && \
+RUN VERSION_URL="https://install.wingbits.com/$GOOSARCH.json" && \
     curl -s "$VERSION_URL" | grep -o '"Version": "[^"]*"' | cut -d'"' -f4 > /etc/wingbits/version
 
 # Fetch and install the Wingbits executable
 RUN VERSION=$(cat /etc/wingbits/version) && \
-    EXECUTABLE_URL="https://install.wingbits.com/$VERSION/$GOOS-$GOARCH.gz" && \
+    EXECUTABLE_URL="https://install.wingbits.com/$VERSION/$GOOSARCH.gz" && \
     curl -s "$EXECUTABLE_URL" -o /usr/local/bin/wingbits.gz && \
     gunzip /usr/local/bin/wingbits.gz && \
     chmod +x /usr/local/bin/wingbits && \
     rm -f /usr/local/bin/wingbits.gz
 
 # Create necessary configuration files
-RUN echo "$DEVICE" > /etc/wingbits/device
+# RUN echo "$DEVICE" > /etc/wingbits/device
+RUN echo "" > /etc/wingbits/device
 
 # Expose port 30006
 EXPOSE 30006

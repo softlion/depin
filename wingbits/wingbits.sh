@@ -3,34 +3,44 @@
 
 function installWingbits() {
 
-    #create folders
-    wingbitsFolder="$projectFolder";
+    #Validate OS
+    case "$(uname -s)" in Linux) GOOS="linux" ;; Darwin) GOOS="darwin" ;; *) echo "Unsupported OS" && exit 3 ;; esac
+    case "$(uname -m)" in x86_64) GOARCH="amd64" ;; i386|i686) GOARCH="386" ;; armv7l) GOARCH="arm" ;; aarch64|arm64) GOARCH="arm64" ;; *) echo "Unsupported architecture" && exit 4 ;; esac
 
-    if [ -z "$DEVICEID" ]; then  
+    wingbitsFolder="$projectFolder";
+    stationFile="$wingbitsFolder/station.txt"
+
+    #Get station id
+    if [ -z "$DEVICEID" ]; then
         if [ "$($runHypervisor inspect -f '{{.State.Running}}' vector 2>/dev/null)" = "true" ]; then
             DEVICEID=$($hypervisor exec "vector" sh -c 'echo $DEVICE_ID')
         fi
 
-        echo "If this is a new antenna, register it first at https://wingbits.com/dashboard/antennas"
+        if [ -z "$DEVICEID" ] && [ -f "$stationFile" ]; then
+            DEVICEID=$(cat $stationFile)
+        fi
+
+        echo "If this is a new station, register it first at https://wingbits.com/dashboard/stations"
         echo "and write down its ID (the ID has 3 words, it looks like 'macho-cider-storm')"
         while true; do
-            echo "Enter the Antenna ID registered in WingBits:"
-            DEVICEID=$(prompt_with_default "Wingbits Antenna ID" "$DEVICEID")
+            echo "Enter the Station ID registered in WingBits:"
+            DEVICEID=$(prompt_with_default "Wingbits Station ID" "$DEVICEID")
             if [[ $DEVICEID =~ ^[a-z]+-[a-z]+-[a-z]+$ ]]; then
                 break
             else
-                echo -e "The Antenna ID is not properly formatted. Must be 3 words separated with dashes. Ex: 'abc-def-ghi'"
+                echo -e "The Station ID is not properly formatted. Must be 3 words separated by hyphens. Ex: 'abc-def-ghi'"
                 DEVICEID=""
             fi
         done
-    else
-        echo "Using Wingbits Antenna ID: $DEVICEID"
     fi
 
-    response=$(curl -o "$wingbitsFolder/vector.yaml" --write-out "%{http_code}" 'https://gitlab.com/wingbits/config/-/raw/master/vector.yaml')
-    if [ "$response" -ne 200 ]; then
-        echo "can not download from gitlab: HTTP error code $response"
-        exit 1
+    #Store station id
+    if [ -n "$DEVICEID" ]; then
+        echo "$DEVICEID" > "$stationFile"
+        echo "Using Wingbits Station ID: $DEVICEID"
+    else
+        echo "No Station ID set. It is mandatory. Stopping."
+        exit 2;
     fi
 
     if ! $runHypervisor network inspect adsbnet >/dev/null 2>&1; then 
@@ -40,9 +50,9 @@ function installWingbits() {
     removeContainer vector
 
 
-    #start VMs
+    #start containers
 
-    #Ultrafeeder
+    #Container: ultrafeeder
     #expose tar1090 webui on 8080 on the host
     $runHypervisor run -d --name ultrafeeder --hostname ultrafeeder \
         --restart unless-stopped \
@@ -61,58 +71,30 @@ function installWingbits() {
         ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder;
 
 
-    #Vector
+    #Container: wingbits
     #receives data from ultrafeeder (see ultrafeederDataFile)
-    #tranform that data and transmit it to wingbits
-    autoupdateLocalPath="/etc/vector/autoupdate.sh"
+    #reads data from the secure GPS
+    #transform that data and transmit it to wingbits
 
-    vectorStatupOverrideScript='#!/bin/sh
+    #-p 30006:30006 vapolia/wingbits:latest-amd64
 
-(crontab -l 2>/dev/null; echo "0 */12 * * * '"$autoupdateLocalPath"'") | crontab -
-exec /usr/local/bin/vector "$@"
-'
-
-    autoupdateScript='#!/bin/sh
-
-echo "Autoupdate starting"
-wget -O /etc/vector/vector_update.yaml 'https://gitlab.com/wingbits/config/-/raw/master/vector.yaml'
-if [ $? -ne 0 ]; then
-  echo "Autoupdate Error: failed to download vector.yaml file"
-  exit 1
-fi
-vector validate /etc/vector/vector_update.yaml
-if [ $? -ne 0 ]; then
-  echo "Autoupdate Error: vector.yaml file content is invalid"
-  exit 1
-fi
-
-old_hash=$(md5sum /etc/vector/vector.yaml | awk '"'"'{print $1}'"'"')
-new_hash=$(md5sum /etc/vector/vector_update.yaml | awk '"'"'{print $1}'"'"')
-if [ "$old_hash" != "$new_hash" ]; then
-  mv -f /etc/vector/vector_update.yaml /etc/vector/vector.yaml
-  #notify vector to reload its config (we also could instead use --watch-config)
-  kill -SIGHUP 1
-  echo "Autoupdate succeeded (config updated)"
-else
-  echo "Autoupdate succeeded (no update)"
-fi
-'
-    echo "$vectorStatupOverrideScript" > "$wingbitsFolder/vector_startup_override.sh"
-    chmod +x "$wingbitsFolder/vector_startup_override.sh"
-    echo "$autoupdateScript" > "$wingbitsFolder/autoupdate.sh"
-    chmod +x "$wingbitsFolder/autoupdate.sh"
-
-
-    $runHypervisor run -d --name vector \
+    # Check if the secure GPS is present
+    MAP_SECURE_GPS=""
+    if [ -e /dev/ttyACM0 ]; then
+      MAP_SECURE_GPS="--device=/dev/ttyACM0:/dev/ttyACM0"
+      echo "Secure GPS found"
+    else
+      echo "Secure GPS NOT FOUND. It will soon be required to receive rewards."
+    fi
+    
+    $runHypervisor run -d --name wingbits \
         --restart unless-stopped \
         --network=adsbnet \
-        -v $wingbitsFolder/vector.yaml:/etc/vector/vector.yaml:rw \
-        -v $wingbitsFolder/vector_startup_override.sh:/etc/vector/vector_startup_override.sh:ro \
-        -v $wingbitsFolder/autoupdate.sh:$autoupdateLocalPath:ro \
-        -e DEVICE_ID="$DEVICEID" \
+        -v "$stationFile:/etc/wingbits/device:ro" \
+        $MAP_SECURE_GPS \
+        -p 30006:30006 \
         --label=com.centurylinklabs.watchtower.enable=true \
-        --entrypoint /etc/vector/vector_startup_override.sh \
-        timberio/vector:latest-alpine;
+        "vapolia/wingbits:latest";
 }
 
 
@@ -190,7 +172,7 @@ function askUltrafeederStationData() {
 
     echo "Latitude, Longitude and Altitude from sea level of this station in meters"
     echo "can be found on google earth https://earth.google.com/"
-    echo "Open Google Earth, center on the location of your antenna."
+    echo "Open Google Earth, center on the location of your station."
     echo "The URL will look like @37.13445868,7.96957148,207.72258715a,...."
     echo "The 1st number is the latitude, the 2nd the longitude and the 3rd the altitude from sea level in meters (207.72258715)."
 
