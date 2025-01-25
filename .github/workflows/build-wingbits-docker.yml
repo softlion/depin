@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      GOOSARCH_LIST: "linux-amd64 linux-arm64 linux-386 linux-arm darwin-amd64 darwin-arm64"
+      GOOSARCH_LIST: "linux-amd64 linux-arm64 linux-386 linux-arm darwin-arm64"
 
     steps:
       - name: Checkout repository
@@ -48,14 +48,18 @@ jobs:
         if: env.ALLIMAGEEXISTS == 'false'
         run: |
           index=0
+          read -r -a VERSIONS_ARRAY <<< "$VERSIONS"
+          read -r -a IMAGEEXISTS_ARRAY <<< "$IMAGEEXISTS"
+          
           for GOOSARCH in $GOOSARCH_LIST; do
 
-            VERSION="${VERSIONS[$index]}"
-            IMAGEEXIST="${IMAGEEXISTS[$index]}"
+            VERSION="${VERSIONS_ARRAY[$index]}"
+            IMAGEEXIST="${IMAGEEXISTS_ARRAY[$index]}"
 
             if [ "$IMAGEEXIST" = "false" ]; then
                 IMAGE="vapolia/wingbits:${VERSION}-${GOOSARCH}"
 
+                echo "Building ${IMAGE}"
                 docker build --build-arg GOOSARCH=${GOOSARCH} -t ${IMAGE} -f wingbits/dockerfile .
                 docker push ${IMAGE}
 
