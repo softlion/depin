@@ -60,7 +60,8 @@ jobs:
                 IMAGE="vapolia/wingbits:${VERSION}-${GOOSARCH}"
 
                 echo "Building ${IMAGE}"
-                docker build --build-arg GOOSARCH=${GOOSARCH} -t ${IMAGE} -f wingbits/dockerfile .
+                GOOSARCH_DOCKER=$(echo $GOOSARCH | sed 's/-/\//')
+                docker build --build-arg GOOSARCH=${GOOSARCH} --platform $GOOSARCH_DOCKER -t ${IMAGE} -f wingbits/dockerfile .
                 docker push ${IMAGE}
 
                 docker tag ${IMAGE} vapolia/wingbits:latest-${GOOSARCH}
