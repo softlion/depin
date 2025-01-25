@@ -5,6 +5,10 @@
 
 ## News
 
+2025-01-25:
+The installation script for diy stations has been updated to support the new wingbits client and the geosigner.  
+It has not yet been tested with the geosigner, as I did not received it.
+
 2024-11-21: 
 Do-It-Yourself Wingbit stations are not more allowed, and all GeoSigner devices for existing stations have been assigned.  
 You can't build a Wingbit station with a custom hardware anymore.  
