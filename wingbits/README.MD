@@ -86,6 +86,22 @@ or
 sudo docker exec ultrafeeder /usr/local/bin/autogain1090
 ```
 
+## GeoSigner
+
+Check the logs:
+```
+sudo docker logs -f wingbits
+#or
+balena logs -f wingbits
+```
+
+Check the number of satellites:
+```
+sudo docker exec wingbits wingbits geosigner info
+#or
+balena exec wingbits wingbits geosigner info
+```
+
 # Other links
 
 - [official Wingbits stations there](https://docs.wingbits.com/project/wingbits-approved-distributors)
