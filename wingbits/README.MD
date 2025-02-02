@@ -5,9 +5,8 @@
 
 ## News
 
-2025-01-25:
-The installation script for diy stations has been updated to support the new wingbits client and the geosigner.  
-It has not yet been tested with the geosigner, as I did not received it.  
+2025-02-02:
+Geosigner support. The installation script for diy stations has been updated to support the new wingbits client and the geosigner.  
 It uses the new container https://hub.docker.com/r/vapolia/wingbits, built with a github action from this git repository.
 
 2024-11-21: 
