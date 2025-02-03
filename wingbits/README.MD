@@ -77,14 +77,13 @@ Want to customize the settings ?
   - Sensecap/nebra: `balena logs -f ultrafeeder` to see what adsb parameters it used
   - Other: `sudo docker logs -f ultrafeeder` to see what adsb parameters it used
 
-## Auto gain
-```
-balena exec ultrafeeder /usr/local/bin/autogain1090
-```
-or
-```
-sudo docker exec ultrafeeder /usr/local/bin/autogain1090
-```
+## Gain
+
+While installing, it will ask you for the gain you want.
+
+You can choose between `default` (recommanded), `autogain` (not recommended), a value (`39`) or a list of values.  
+For a list of values, check the (doc here)[https://github.com/wiedehopf/readsb?tab=readme-ov-file#autogain].  
+For example: `auto-verbose,0,25,31,243`
 
 ## GeoSigner
 
