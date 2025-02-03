@@ -52,8 +52,11 @@ READSB_EXTRA_ARGS=--net-connector wingbits,30006,json_out
 # --------------------------------------------------
 # Do not change anything below
 # --------------------------------------------------
-#In db, or autogain. Note: autogain does not work nor setting a value, it is always set to 0dB when specified, which kills all aircrafts.
-#ADSB_SDR_GAIN=5
+#Since november 2024, a new autogain alg is used when the gain is NOT set.
+#It is recommended to leave this parameter commented out.
+#Source: https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder?tab=readme-ov-file#using-readsbs-built-in-autogain-recommended
+#If you still want to set this value, see https://github.com/wiedehopf/readsb?tab=readme-ov-file#autogain
+ADSB_SDR_GAIN=${ADSB_SDR_GAIN}
 
 READSB_ENABLE_BIASTEE=true
 
