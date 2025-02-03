@@ -48,6 +48,7 @@ function installWingbits() {
     fi;
     removeContainer ultrafeeder
     removeContainer vector
+    removeContainer wingbits
 
 
     #start containers
