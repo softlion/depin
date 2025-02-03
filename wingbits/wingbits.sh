@@ -54,6 +54,7 @@ function installWingbits() {
 
     #Container: ultrafeeder
     #expose tar1090 webui on 8080 on the host
+    #9273-9274:9273-9274 # to expose the statistics interface to Prometheus
     $runHypervisor run -d --name ultrafeeder --hostname ultrafeeder \
         --restart unless-stopped \
         --network=adsbnet \
