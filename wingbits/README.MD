@@ -85,6 +85,11 @@ You can choose between `default` (recommanded), `autogain` (not recommended), a 
 For a list of values, check the (doc here)[https://github.com/wiedehopf/readsb?tab=readme-ov-file#autogain].  
 For example: `auto-verbose,0,25,31,243`
 
+Verifying:
+
+- check out the logs `sudo docker logs -f ultrafeeder` or `balena logs -f ultrafeeder` and search for the readsb command line.
+- check out the "Misc" graph on 'http://<ip>:8080/graphs1090', the current gain is written below that graph.
+
 ## GeoSigner
 
 Check the logs:
