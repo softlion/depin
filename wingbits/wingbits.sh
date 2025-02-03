@@ -75,7 +75,7 @@ function installWingbits() {
 
     #Container: wingbits
     #receives data from ultrafeeder (see ultrafeederDataFile)
-    #reads data from the secure GPS
+    #reads data from the secure GPS (geosigner)
     #transform that data and transmit it to wingbits
 
     #-p 30006:30006 vapolia/wingbits:latest-amd64
@@ -84,9 +84,9 @@ function installWingbits() {
     MAP_SECURE_GPS=""
     if [ -e /dev/ttyACM0 ]; then
       MAP_SECURE_GPS="--device=/dev/ttyACM0:/dev/ttyACM0"
-      echo "Secure GPS found"
+      echo "Geosigner (secure GPS) found"
     else
-      echo "Secure GPS NOT FOUND. It will soon be required to receive rewards."
+      echo "Geosigner (secure GPS) NOT FOUND. It is required to receive wingbits rewards."
     fi
     
     $runHypervisor run -d --name wingbits \
