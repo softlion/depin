@@ -124,6 +124,7 @@ function askUltrafeederStationData() {
     longitude=""
     altitudeMeters=""
     timezone=""
+    gain="default"
 
     
     #Get the data files
@@ -140,9 +141,8 @@ function askUltrafeederStationData() {
         longitude=$(get_value "FEEDER_LONG")
         altitudeMeters=$(get_value "FEEDER_ALT_M")
         timezone=$(get_value "FEEDER_TZ")
-
-        #overwrite the file with a new version if one exists
-        response=$(curl -o "$ultrafeederDataFile" --write-out "%{http_code}" 'https://raw.githubusercontent.com/softlion/depin/main/wingbits/ultrafeeder-data.txt')
+        gain=$(get_value "READSB_GAIN")
+        gain=${gain:-default}
     fi
 
     zonefile="$ultrafeederFolder/zone1970.tab"
@@ -194,6 +194,18 @@ function askUltrafeederStationData() {
         echo "Invalid time zone selection. Please choose from the list above."
     done
 
+    #Since november 2024, a new autogain alg is used when the gain is NOT set.
+    #It is recommended to leave this parameter commented out.
+    #Source: https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder?tab=readme-ov-file#using-readsbs-built-in-autogain-recommended
+    #If you still want to set this value, see https://github.com/wiedehopf/readsb?tab=readme-ov-file#autogain
+    echo "Enter a gain"
+    echo "Read more on see https://github.com/wiedehopf/readsb?tab=readme-ov-file#autogain and https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder?tab=readme-ov-file#using-readsbs-built-in-autogain-recommended"
+    echo "Possible values: 0-255 | default | autogain | off"
+    echo "Recommended value: default (or 39 if you don't want auto gain)"
+    gain=$(prompt_with_default "Gain" "$gain")
+
+    #overwrite the file with a new version if one exists
+    response=$(curl -o "$ultrafeederDataFile" --write-out "%{http_code}" 'https://raw.githubusercontent.com/softlion/depin/main/wingbits/ultrafeeder-data.txt')
 
     #replace data by user value
     sed -i "s/^FEEDER_NAME=.*/FEEDER_NAME=$stationName/" $ultrafeederDataFile
@@ -212,6 +224,12 @@ function askUltrafeederStationData() {
     sed -i "s/^READSB_LAT=.*/READSB_LAT=$latitude/" $ultrafeederDataFile
     sed -i "s/^READSB_LON=.*/READSB_LON=$longitude/" $ultrafeederDataFile
     sed -i "s/^READSB_ALT=.*/READSB_ALT=$altitudeMeters/" $ultrafeederDataFile
+
+    if [ "$gain" = "default" ]; then
+        sed -i "/^READSB_GAIN=/d" "$ultrafeederDataFile"
+    else
+        sed -i "s/^READSB_GAIN=.*/READSB_GAIN=$gain/" $ultrafeederDataFile
+    fi
 
     echo ""
     echo "Summary:"
