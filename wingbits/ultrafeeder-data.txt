@@ -6,7 +6,7 @@
 # replace with your own values
 # --------------------------------------------------
 FEEDER_ALT_M=
-FEEDER_ALT_FT=
+FEEDER_ALT_FT
 FEEDER_LAT=
 FEEDER_LONG=
 FEEDER_TZ=
@@ -74,7 +74,6 @@ READSB_DEVICE_TYPE=rtlsdr
 READSB_LAT=${FEEDER_LAT}
 READSB_LON=${FEEDER_LONG}
 READSB_ALT=${FEEDER_ALT_M}m
-READSB_MODEAC=true
 READSB_RX_LOCATION_ACCURACY=2
 READSB_STATS_RANGE=true
 
