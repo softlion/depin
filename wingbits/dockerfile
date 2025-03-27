@@ -16,6 +16,7 @@
 
 
 
+# python is required by the wingbits binary, for initial onboarding of the geosigner.
 FROM python:3-slim-bookworm
 
 #Automatic args
@@ -26,13 +27,9 @@ ARG TARGETARCH
 RUN echo "Building for platform: $TARGETPLATFORM ($TARGETOS-$TARGETARCH)"
 
 # Install necessary utilities
-# python is required by the wingbits binary, for initial onboarding of the geosigner.
 RUN apt-get update && apt-get install -y \
     curl \
     gzip \
-#    python3 \
-#    python3-pip \
-#    python3-venv \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /etc/wingbits
@@ -50,7 +47,6 @@ RUN VERSION=$(cat /etc/wingbits/version) && \
     rm -f /usr/local/bin/wingbits.gz
 
 # Create necessary configuration files
-# RUN echo "$DEVICE" > /etc/wingbits/device
 RUN echo "" > /etc/wingbits/device
 
 # Expose port 30006
