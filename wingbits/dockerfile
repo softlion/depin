@@ -1,6 +1,6 @@
 # Dockerfile
 # To run this container :
-# docker run --rm  -v /mnt/c/Users/benja_lfpsq1j/wingbits_device:/etc/wingbits/device --device=/dev/ttyACM0:/dev/ttyACM0 -p 30006:30006 vapolia/wingbits:latest-amd64
+# docker run --rm  -v some_local_storage_folder:/etc/wingbits/device --device=/dev/ttyACM0:/dev/ttyACM0 -p 30006:30006 vapolia/wingbits:latest-amd64
 #
 # TODO: check ownership of tty (dialout or tty): 
 # ls -l /dev/ttyACM0
