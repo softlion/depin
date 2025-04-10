@@ -70,7 +70,7 @@ function installWingbits() {
         --tmpfs /tmp:size=128M \
         --tmpfs /var/log:size=32M \
         --label=com.centurylinklabs.watchtower.enable=true \
-        "ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:latest-build-678";
+        "ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:telegraf-build-641";
 
 
     #Container: wingbits
