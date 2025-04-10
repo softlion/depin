@@ -104,7 +104,9 @@ function askUltrafeederStationData() {
 
     #Get USB bus and device numbers of the RTL stick
     deviceNameQuery='RTL2838|ADSB_1090|0bda:2838'
+    set +e
     line=$(lsusb | grep -E $deviceNameQuery)
+    set -e
     
     if [ -z "$line" ]; then
         echo "No RTL-SDR stick found (searching $deviceNameQuery)"
