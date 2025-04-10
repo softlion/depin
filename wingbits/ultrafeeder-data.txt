@@ -32,7 +32,7 @@ TAR1090_PAGETITLE=GiveANameToYourPlace
 # Each line must end with a semicolon ";"
 # The last line must NOT end with a semicolon ";"
 
-MLATHUB_ENABLE=false
+MLATHUB_DISABLE=true
 
 #ULTRAFEEDER_CONFIG=
 #    adsb,feed.adsb.fi,30004,beast_reduce_plus_out;
