@@ -10,7 +10,7 @@ Geosigner support. The installation script for diy stations has been updated to 
 It uses the new container https://hub.docker.com/r/vapolia/wingbits, built with a github action from this git repository.
 
 2024-11-21: 
-Do-It-Yourself Wingbit stations are not more allowed, and all GeoSigner devices for existing stations have been assigned.  
+Do-It-Yourself Wingbit stations are no more allowed, and all GeoSigner devices for existing stations have been assigned.  
 You can't build a Wingbit station with a custom hardware anymore.  
 
 That means this script is only useful to update your existing installation.  
