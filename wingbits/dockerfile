@@ -49,8 +49,8 @@ RUN VERSION=$(cat /etc/wingbits/version) && \
 # Create necessary configuration files
 RUN echo "" > /etc/wingbits/device
 
-# Expose ports
-EXPOSE 30006 30015
+# Expose ports (standard, beast, metrics - ip:8088/metrics)
+EXPOSE 30006 30015 8088
 
 # Set the executable as the default command
 CMD ["/usr/local/bin/wingbits", "feeder", "start"]
