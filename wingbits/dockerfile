@@ -49,8 +49,8 @@ RUN VERSION=$(cat /etc/wingbits/version) && \
 # Create necessary configuration files
 RUN echo "" > /etc/wingbits/device
 
-# Expose port 30006
-EXPOSE 30006
+# Expose ports
+EXPOSE 30006 30015
 
 # Set the executable as the default command
 CMD ["/usr/local/bin/wingbits", "feeder", "start"]
