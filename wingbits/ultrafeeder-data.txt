@@ -48,7 +48,7 @@ MLATHUB_DISABLE=true
 #    mlat,feed.theairtraffic.com,31090,39004
 
 #Wingbits
-READSB_EXTRA_ARGS=--net-connector wingbits,30006,json_out --net-connector wingbits,30015,beast_reduce_out -net-beast-reduce-optimize-for-mlat --net-beast-reduce-interval=0.125
+READSB_EXTRA_ARGS=--net-connector wingbits,30006,json_out --net-connector wingbits,30015,beast_reduce_out --net-beast-reduce-optimize-for-mlat --net-beast-reduce-interval=0.125
 
 
 # --------------------------------------------------
