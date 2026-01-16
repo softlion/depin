@@ -78,8 +78,6 @@ function installWingbits() {
     #reads data from the secure GPS (geosigner)
     #transform that data and transmit it to wingbits
 
-    #-p 30006:30006 vapolia/wingbits:latest-amd64
-
     # Check if the secure GPS is present
     MAP_SECURE_GPS=""
     if [ -e /dev/ttyACM0 ]; then
@@ -95,6 +93,7 @@ function installWingbits() {
         -v "$stationFile:/etc/wingbits/device:ro" \
         $MAP_SECURE_GPS \
         -p 30006:30006 \
+        -p 8088:8088 \
         --label=com.centurylinklabs.watchtower.enable=true \
         "vapolia/wingbits:latest";
 }
