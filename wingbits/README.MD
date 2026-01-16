@@ -5,6 +5,12 @@
 
 ## News
 
+2026-01-16:
+Beast support. This protocol will replace json with smaller packets.  
+Local dashboard: `http://ip:8088/`  
+Local metrics: `http://ip:8088/metrics` (graphana compatible)
+
+
 2025-02-02:
 Geosigner support. The installation script for diy stations has been updated to support the new wingbits client and the geosigner.  
 It uses the new container https://hub.docker.com/r/vapolia/wingbits, built with a github action from this git repository.
