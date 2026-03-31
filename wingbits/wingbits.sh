@@ -93,6 +93,7 @@ function installWingbits() {
         -v "$stationFile:/etc/wingbits/device:ro" \
         $MAP_SECURE_GPS \
         -p 30006:30006 \
+        -p 30015:30015 \
         -p 8088:8088 \
         --label=com.centurylinklabs.watchtower.enable=true \
         "vapolia/wingbits:latest";
