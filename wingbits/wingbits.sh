@@ -87,6 +87,7 @@ function installWingbits() {
     fi
     
     $runHypervisor run -d --name wingbits \
+        --pull always \
         --restart unless-stopped \
         --network=adsbnet \
         -v "$stationFile:/etc/wingbits/device:ro" \

@@ -56,6 +56,6 @@ jobs:
         if: env.ALLIMAGEEXISTS == 'false'
         run: |
 
-          VERSION_TAG=$(echo "$VERSIONS" | sed -e 's/ /-/g')
+          VERSION_TAG=$(echo "$VERSIONS" | tr ' ' '\n' | sort -u | paste -sd '-')
           DOCKER_OS_ARCH_LIST=$(echo $GOOSARCH_LIST | sed -e 's/-/\//g' -e 's/ /,/g')
           docker buildx build --platform $DOCKER_OS_ARCH_LIST -t vapolia/wingbits:latest -t vapolia/wingbits:$VERSION_TAG --push wingbits
