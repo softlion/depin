@@ -49,6 +49,13 @@ RUN VERSION=$(cat /etc/wingbits/version) && \
 # Create necessary configuration files
 RUN echo "" > /etc/wingbits/device
 
+# Stub readsb config so the wingbits client's BEAST auto-enable check passes at startup.
+# The client greps /etc/default/readsb for the BEAST connector string; if absent it keeps
+# port 30015 in listen-only/draining mode and BEAST data from ultrafeeder is discarded.
+# The literal "localhost" in the connector string is required by the client's regex —
+# the actual data flow is ultrafeeder -> wingbits:30015 over the adsbnet docker network.
+RUN echo 'NET_OPTIONS="--net-connector localhost,30006,json_out --net-connector localhost,30015,beast_reduce_out --net-beast-reduce-optimize-for-mlat --net-beast-reduce-interval=0.125"' > /etc/default/readsb
+
 # Expose ports (standard, beast, metrics - ip:8088/metrics)
 EXPOSE 30006 30015 8088
 

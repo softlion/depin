@@ -1,0 +1,1 @@
+read AGENTS.md file instead of this file.
