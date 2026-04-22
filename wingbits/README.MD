@@ -115,4 +115,3 @@ balena exec wingbits wingbits geosigner info
 # Other links
 
 - [official Wingbits stations there](https://docs.wingbits.com/project/wingbits-approved-distributors)
-- [This one has good prices in EU](https://crypship.io/en/product/wingbits-wb300/)
