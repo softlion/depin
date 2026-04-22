@@ -69,8 +69,7 @@ function installWingbits() {
         --tmpfs /run:exec,size=256M \
         --tmpfs /tmp:size=128M \
         --tmpfs /var/log:size=32M \
-        --label=com.centurylinklabs.watchtower.enable=true \
-        "ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:telegraf-build-641";
+        "ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:telegraf-build-914";
 
 
     #Container: wingbits
@@ -92,9 +91,7 @@ function installWingbits() {
         --network=adsbnet \
         -v "$stationFile:/etc/wingbits/device:ro" \
         $MAP_SECURE_GPS \
-        -p 30006:30006 \
         -p 8088:8088 \
-        --label=com.centurylinklabs.watchtower.enable=true \
         "vapolia/wingbits:latest";
 }
 

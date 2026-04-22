@@ -5,26 +5,29 @@
 
 ## News
 
-2026-01-16:
-Beast support. This protocol will replace json with smaller packets.  
-Local dashboard: `http://ip:8088/`  
-Local metrics: `http://ip:8088/metrics` (graphana compatible)
+2026-04-22:
+- Update ultrafeeder to telegraf-build-914 (from telegraf-build-641)
+- Balena support will be removed in the next version (Nebra has shut down, Sensecap has locked its software)
 
+2026-01-16:
+- Beast support. This protocol will replace json with smaller packets.  
+- Local dashboard: `http://ip:8088/`  
+- Local metrics: `http://ip:8088/metrics` (graphana compatible)
 
 2025-02-02:
-Geosigner support. The installation script for diy stations has been updated to support the new wingbits client and the geosigner.  
-It uses the new container https://hub.docker.com/r/vapolia/wingbits, built with a github action from this git repository.
+- Geosigner support. The installation script for diy stations has been updated to support the new wingbits client and the geosigner.  
+- It uses the new container https://hub.docker.com/r/vapolia/wingbits, built with a github action from this git repository.
 
 2024-11-21: 
-Do-It-Yourself Wingbit stations are no more allowed, and all GeoSigner devices for existing stations have been assigned.  
-You can't build a Wingbit station with a custom hardware anymore.  
+- Do-It-Yourself Wingbit stations are no more allowed, and all GeoSigner devices for existing stations have been assigned.  
+- You can't build a Wingbit station with a custom hardware anymore.  
 
 That means this script is only useful to update your existing installation.  
 It is useless for everyone else.
 
 # CAN'T BE USED ANYMORE TO BUILD A NEW WINGBIT STATION
 
-You can buy [official Wingbits stations there]( https://docs.wingbits.com/project/wingbits-approved-distributors) for example.
+You can buy [official Wingbits stations there]( https://docs.wingbits.com/project/wingbits-approved-distributors)
 
 ## Prerequisites
 
