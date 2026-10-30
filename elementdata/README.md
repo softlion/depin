@@ -2,7 +2,7 @@
 
 **********************************************************************
 # 🚨
-# THIS PROJECT HAS BEEN ABANDONED BY ITS OWNERS AND  IS NOW ARCHIVED
+# THIS PROJECT HAS BEEN TERMINATED BY ITS OWNERS AND  IS NOW ARCHIVED
 # 🚨
 *********************************************************************
 

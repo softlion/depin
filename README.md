@@ -4,11 +4,6 @@ This repo holds scripts to mine or dual mine. It works on linux devices, like He
 
 THIS GITHUB REPO IS NOT AFFILIATED WITH ANY COMPANY.
 
-# Projects
-
-[List of DePIN projects, with study of their profitability](https://wholovesburrito.com/top-roi-project-rank/)
-
-
 # Scripts
 
 Open the folder you are interested in, and follow the instructions there.
@@ -53,29 +48,8 @@ bash -c "$(curl 'https://raw.githubusercontent.com/softlion/depin/main/wingbits/
 sudo bash ...
 ```
 
-# Automatic Updates
-
-To update the containers automatically, use ~~watchtower~~. Side note: watchtower has been archived on december 2025.  
-There is currently no solution, as Ouroboros has been deprecated too.  
-You may use Diun to notity you, but it's not an automatic updater.
-
 ## Cleaning disk space
-
-Auto updating is nice, but it downloads new versions without deleting the old inactive ones.  
-To delete the old inactive versions and reclaim disk space run:
 
 `sudo docker image prune -a`
 or
 `balena image prune -a`
-
-# Tip
-
-* Star the project (tap on the start on top right)
-
-* Donate if those scripts helped you !  
-
-Multi chain Metamask account (BSC, Etherum, Arbitrum, Doge, Polygon, Avalanche, ...):
-
-0xe0018e74856e68A62d142Ab1C77b0F7B0ca3a2Ea
-
-![Alt](https://repobeats.axiom.co/api/embed/f686d24040945f6ddde231208e2a4d5ae0f79466.svg "Repobeats analytics image")

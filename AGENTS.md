@@ -9,14 +9,6 @@ Many projects also support Balena OS (for unlocked nebra and sensecap devices), 
 This repository contains one folder per project, each project is unique and unrelated to the others.
 Read the README.md and AGENTS.md in each folder for more information.
 
-# Summary of projets
-
-## Wingbits
-Custom installer for the wingbits miner software in a docker container.
-
-## Presearch
-Custom installer for the presearch miner software in a docker container.
-
 # Common Considerations
 
 - Security: the containers are not designed to be run on untrusted networks. Even if they are designed to expose the minimal amount of ports and features. The original software is also left untouched when possible, and fetched only from the official repositories.

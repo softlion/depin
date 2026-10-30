@@ -1,4 +1,10 @@
 # Presearch
+**********************************************************************
+# 🚨
+# THIS PROJECT HAS BEEN TERMINATED BY ITS OWNERS AND  IS NOW ARCHIVED
+# 🚨
+*********************************************************************
+
 
 [Website](https://presearch.com/signup?rid=4757851)  
 [Community on Telegram](https://t.me/PresearchNodes)  

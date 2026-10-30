@@ -1,5 +1,12 @@
 # ThingsIX
 
+**********************************************************************
+# 🚨
+# THIS PROJECT HAS BEEN TERMINATED BY ITS OWNERS AND  IS NOW ARCHIVED
+# 🚨
+*********************************************************************
+
+
 Secure Lorawan Mining.
 
 [Web site](https://thingsix.com/)  

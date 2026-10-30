@@ -1,5 +1,12 @@
 # Streamr - Becoming an [Operator](https://streamr.network/hub/network/operators)
 
+**********************************************************************
+# 🚨
+# THIS PROJECT HAS BEEN TERMINATED BY ITS OWNERS AND  IS NOW ARCHIVED
+# 🚨
+*********************************************************************
+
+
 Connecting Web3 with real time data.  
 Streamr distributes publisher's live data to customers, without any server or cloud API.  
 Publishers pay for publishing data. Node operators gets a cut of the data passing through them.
